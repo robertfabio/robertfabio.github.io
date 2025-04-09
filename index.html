@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <!-- <meta http-equiv="refresh" content="3" /> -->
+
+    <!-- Personal CSS -->
+    <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+      integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+      crossorigin="anonymous"
+    />
+
+    <!-- Material Icons -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+
+    <!-- Animate.css -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
+
+    <title>Fábio Gurgel - Portfolio</title>
+  </head>
+
+  <body>
+    <!-- Topbar -->
+    <div id="topbar" class="sticky">
+      <div class="topbar container">
+        <div class="logo noselect">
+          <span>FG</span>
+        </div>
+
+        <button id="topbar-toggler" class="btn-toggler" aria-label="Toggle navigation">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <nav>
+          <a href="#experience" data-i18n="nav-experience">Experiência</a>
+          <a href="#education" data-i18n="nav-education">Educação</a>
+          <a href="#projects" data-i18n="nav-projects">Projetos</a>
+          <a href="#contact" data-i18n="nav-contact">Contato</a>
+          
+          <div id="language-toggle" class="language-selector" title="PT → English / EN → Português">
+            <i class="fas fa-globe fa-lg"></i>
+            <span>PT</span>
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <!-- Banner -->
+    <section id="banner">
+      <div class="container">
+        <h2 class="animate__animated animate__fadeIn">
+          <span data-i18n="banner-welcome">Bem-vindo ao Meu Portfólio</span> <br />
+          &#60;<span data-i18n="banner-developer">Desenvolvedor</span> & <span data-i18n="banner-student">Estudante</span>/&#62;
+        </h2>
+
+        <div class="cards animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="card">
+            <h4><i class="fas fa-envelope"></i> Email</h4>
+            <p class="noselect">
+              fabio.filho25453 <i class="fas fa-at fa-xs"></i> alunos.ufersa.edu.br
+            </p>
+          </div>
+
+          <div class="card">
+            <h4><i class="fab fa-github"></i> GitHub</h4>
+            <p><a href="https://github.com/robertfabio" target="_blank" rel="noopener">robertfabio</a></p>
+          </div>
+
+          <div class="card">
+            <h4><i class="fas fa-map-marker-alt"></i> <span data-i18n="banner-location">Localização</span></h4>
+            <p>Brazil</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experiences -->
+    <section id="experience" class="alternative">
+      <div class="container">
+        <header>
+          <h2 class="animate__animated animate__fadeIn" data-i18n="experience-title">Experiências Profissionais</h2>
+          <p data-i18n="experience-subtitle">Minha jornada até agora</p>
+        </header>
+
+        <div class="content-grid animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="experience exp-1 active" data-target="#desc-exp-1">
+            <h4><i class="fas fa-paint-brush"></i> <span data-i18n="experience-graphic-designer">Designer Gráfico</span></h4>
+            <p data-i18n="experience-local-print">Gráfica Local</p>
+            <small>2024 (3 <span data-i18n="experience-months">meses</span>)</small>
+          </div>
+
+          <div class="experience exp-2" data-target="#desc-exp-2">
+            <h4><i class="fas fa-users"></i> <span data-i18n="experience-coordinator">Coordenador Geral & Secretário</span></h4>
+            <p data-i18n="experience-admin-center">Centro Acadêmico de Administração (UFERSA)</p>
+            <small>2024 - 2025</small>
+          </div>
+
+          <div class="exp-descriptions">
+            <div id="desc-exp-1" class="exp-description active">
+              <h2 data-i18n="experience-graphic-design">Design Gráfico</h2>
+              <p>2024</p>
+              <ul>
+                <li data-i18n="experience-designed-marketing">Criação de materiais de marketing (flyers, banners, logos) usando Canva e CorelDRAW</li>
+                <li data-i18n="experience-collaborated-clients">Colaboração com clientes para refinar conceitos visuais</li>
+                <li data-i18n="experience-managed-workflow">Gerenciamento de fluxo de trabalho para múltiplos projetos, cumprindo prazos apertados</li>
+              </ul>
+            </div>
+
+            <div id="desc-exp-2" class="exp-description">
+              <h2 data-i18n="experience-volunteer">Trabalho Voluntário</h2>
+              <p>2024 - 2025</p>
+              <ul>
+                <li data-i18n="experience-organized-events">Organização de eventos acadêmicos, melhorando o engajamento dos estudantes</li>
+                <li data-i18n="experience-streamlined-processes">Otimização de processos de documentação</li>
+                <li data-i18n="experience-coordinated-activities">Coordenação de atividades administrativas</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <div class="container">
+        <header>
+          <h2 class="animate__animated animate__fadeIn" data-i18n="education-title">Educação</h2>
+          <p data-i18n="education-subtitle">Formação Acadêmica</p>
+        </header>
+
+        <div class="cards animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="card">
+            <h4 data-i18n="education-bsc-cs">Bacharelado em Ciência da Computação</h4>
+            <p data-i18n="education-ufersa">Universidade Federal Rural do Semi-Árido (UFERSA)</p>
+            <p>2025 - 2029 (2º <span data-i18n="education-semester">semestre</span>)</p>
+          </div>
+
+          <div class="card">
+            <h4 data-i18n="education-bsc-business">Bacharelado em Administração</h4>
+            <p data-i18n="education-ufersa">Universidade Federal Rural do Semi-Árido (UFERSA)</p>
+            <p>2024 - 2025 (2 <span data-i18n="education-semesters">semestres</span> <span data-i18n="education-completed">concluídos</span>)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="alternative">
+      <div class="container">
+        <header>
+          <h2 class="animate__animated animate__fadeIn" data-i18n="projects-title">Projetos em Destaque</h2>
+          <p data-i18n="projects-subtitle">Trabalhos e experiências profissionais</p>
+        </header>
+
+        <div class="projects animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="softwares">
+            <h4><i class="fas fa-code"></i> <span data-i18n="projects-web-dev">Desenvolvimento Web</span></h4>
+            <p style="font-size: small" class="pb-3" data-i18n="projects-dev-highlight">
+              Projetos de desenvolvimento em destaque
+            </p>
+
+            <div class="project-item">
+              <a href="https://cacc-ufersa.vercel.app/" target="_blank" rel="noopener">
+                CACC-UFERSA <i class="fas fa-external-link-alt"></i>
+              </a>
+              <small class="text-muted" data-i18n="projects-cacc">
+                Site do Centro Acadêmico de Ciência da Computação - Desenvolvido com React, Node.js, Next.js e Tailwind CSS
+              </small>
+            </div>
+
+            <div class="project-item">
+              <a href="https://euteamonicole.vercel.app/" target="_blank" rel="noopener">
+                Presente Virtual <i class="fas fa-external-link-alt"></i>
+              </a>
+              <small class="text-muted" data-i18n="projects-portfolio">
+                Um presente em forma de buquê 3D virtual, desenvolvido em JavaScript puro
+              </small>
+            </div>
+          </div>
+
+          <div class="apps">
+            <h4><i class="fas fa-tools"></i> <span data-i18n="projects-skills">Competências</span></h4>
+            <p style="font-size: small" class="pb-3" data-i18n="projects-expertise">Expertise técnica e profissional</p>
+
+            <div class="skill-item">
+              <a href="#">
+                <i class="fas fa-palette"></i> <span data-i18n="projects-graphic-design">Design Gráfico</span>
+              </a>
+              <small class="text-muted" data-i18n="projects-design-tools">
+                Canva, CorelDRAW, Design Visual, Materiais de Marketing
+              </small>
+            </div>
+
+            <div class="skill-item">
+              <a href="#">
+                <i class="fas fa-graduation-cap"></i> <span data-i18n="projects-academic">Formação Acadêmica</span>
+              </a>
+              <small class="text-muted" data-i18n="projects-academic-info">
+                Ciência da Computação e Administração (UFERSA)
+              </small>
+            </div>
+
+            <div class="skill-item">
+              <a href="#">
+                <i class="fas fa-language"></i> <span data-i18n="projects-languages">Idiomas</span>
+              </a>
+              <small class="text-muted" data-i18n="projects-languages-info">
+                Português (Nativo), Inglês (Avançado)
+              </small>
+            </div>
+
+            <div class="skill-item">
+              <a href="#">
+                <i class="fas fa-handshake"></i> <span data-i18n="projects-interpersonal">Habilidades Interpessoais</span>
+              </a>
+              <small class="text-muted" data-i18n="projects-interpersonal-info">
+                Gestão de Projetos, Comunicação com Clientes, Coordenação de Equipes
+              </small>
+            </div>
+          </div>
+        </div>
+
+        <small class="note mt-3"><i class="fas fa-rocket"> </i> <span data-i18n="projects-mockup">Mockup</span></small>
+      </div>
+    </section>
+
+    <!-- Contacts -->
+    <section id="contact">
+      <div class="container">
+        <header>
+          <h2 class="animate__animated animate__fadeIn" data-i18n="contact-title">Contato</h2>
+          <p data-i18n="contact-subtitle">Conecte-se comigo nas redes sociais</p>
+        </header>
+
+        <div class="links animate__animated animate__fadeInUp animate__delay-1s">
+          <a
+            class="card card-min"
+            href="https://github.com/robertfabio"
+            target="_blank"
+            rel="noopener"
+            title="GitHub"
+          >
+            <i class="fab fa-github fa-lg"></i>
+          </a>
+
+          <a
+            class="card card-min"
+            href="#"
+            target="_blank"
+            title="LinkedIn"
+          >
+            <i class="fab fa-linkedin-in fa-lg"></i>
+          </a>
+
+          <a
+            class="card card-min"
+            href="./files/cv.pdf"
+            target="_blank"
+            rel="noopener"
+            title="Download CV"
+          >
+            <i class="fas fa-file-pdf fa-lg" style="color: #e74c3c;"></i>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="container" style="font-size: small; padding-top: 0;">
+      <div class="animate__animated animate__fadeIn animate__delay-1s" style="display: flex; justify-content: center; align-items: center; gap: 5px; color: var(--primary-light);">
+        <span data-i18n="footer-designed">Designed with passion by Fábio Gurgel</span> © 2025
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/i18n.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
+
+<!-- Inspiration -->
+<!-- https://dribbble.com/shots/15293127-Mickael-Personal-Website -->
+<!-- 2022 - https://dribbble.com/shots/15714439-splt-js/attachments/7514939?mode=media -->

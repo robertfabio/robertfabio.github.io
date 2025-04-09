@@ -1,0 +1,164 @@
+/* Top bar */
+
+#topbar {
+  background-color: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  z-index: 100;
+  transition: all var(--transition-normal);
+  border-bottom: 1px solid rgba(10, 15, 20, 0.08);
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+
+  padding: 1.2rem 1rem;
+  background-color: inherit;
+  transition: padding 0.3s ease;
+}
+
+#topbar nav {
+  flex-basis: 100%;
+
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+
+  padding-inline-start: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+#topbar nav.show {
+  display: flex;
+  animation: fadeIn 0.3s ease;
+}
+
+#topbar nav a {
+  position: relative;
+  padding: 0.3rem 0;
+  border-bottom: 2px solid transparent;
+  transition: all var(--transition-normal);
+}
+
+#topbar nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -2px;
+  left: 0;
+  background-color: var(--accent);
+  transition: width var(--transition-normal);
+}
+
+#topbar nav a:hover::after {
+  width: 100%;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+#topbar .logo {
+  width: auto;
+  height: 40px;
+
+  padding: 0.25em 0.5em;
+
+  color: var(--primary);
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  background-color: transparent;
+  border-left: 3px solid var(--accent);
+  border-radius: 0;
+  box-shadow: 0 2px 5px rgba(10, 15, 20, 0.05);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-normal);
+  position: relative;
+  overflow: hidden;
+}
+
+#topbar .logo::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(52, 152, 219, 0.1), transparent);
+  transition: left 0.8s ease;
+}
+
+#topbar .logo:hover::before {
+  left: 100%;
+}
+
+#topbar.sticky {
+  position: sticky;
+  top: 0;
+  box-shadow: 0 5px 15px rgba(10, 15, 20, 0.08);
+}
+
+#topbar.shadow .topbar {
+  padding: 0.8rem 1rem;
+}
+
+#topbar .btn-toggler {
+  cursor: pointer;
+  align-self: flex-end;
+
+  padding: 0.7rem;
+
+  color: var(--primary);
+  background-color: transparent;
+  border: 1px solid var(--line-gray);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+#topbar .btn-toggler:hover {
+  border-color: var(--accent) !important;
+  color: var(--accent);
+}
+
+#topbar nav a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--accent);
+  transition: width 0.3s ease;
+}
+
+#topbar nav a:hover::after,
+#topbar nav a.active::after {
+  width: 100%;
+}
+
+@media (min-width: 576px) {
+  #topbar .btn-toggler {
+    display: none;
+  }
+
+  #topbar nav {
+    display: flex;
+    flex-basis: auto;
+
+    flex-direction: row;
+    align-items: center;
+    gap: 1.5rem;
+  }
+}
