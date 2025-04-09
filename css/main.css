@@ -4,6 +4,8 @@
 /* Internal imports: General use */
 @import url('./container.css');
 @import url('./card.css');
+@import url('./card-min.css');
+@import url('./animations.css');
 
 /* Internal imports: Specific */
 @import url('./topbar.css');
@@ -12,23 +14,30 @@
 @import url('./education.css');
 @import url('./projects.css');
 @import url('./contact.css');
-@import url('./schedule.css');
+/* Schedule.css removido */
+@import url('./language-selector.css');
 
 /* Variables */
 :root {
   /* Colors */
-  --off-white: #fdfdfd;
-  --gray: #bac0ca;
-  --light-gray: #f3f4fa;
-  --medium-gray: #aeb4b9;
-  --dark-gray: #898a8b;
-  --line-gray: #e7ebee;
+  --off-white: #FFFFFF;
+  --gray: #E0E0E0;
+  --light-gray: #F5F5F5;
+  --medium-gray: #A9A9A9;
+  --dark-gray: #4A4A4A;
+  --line-gray: #D8D8D8;
 
-  --primary: #5934c3;
-  --primary-light: #c2edda;
+  --primary: #0A0F14; /* Black Pearl - Dark base */
+  --primary-light: #1E293B; /* Slightly lighter than Black Pearl */
+  --accent: #8393e0; /* Medium Lavender Blue */
+  --accent-light: #9dace8; /* Lighter Lavender Blue */
+  --accent-dark: #6a7ccc; /* Darker Lavender Blue */
 
-  --background: #f5f5fa;
-  --background-alternative: #e2e2f3;
+  --background: #FFFFFF;
+  --background-alternative: #F8F9FA; /* Very light gray with minimal blue undertone */
+  --card-shadow: rgba(10, 15, 20, 0.1);
+  --card-shadow-hover: rgba(10, 15, 20, 0.18);
+  --card-shadow-alt: rgba(10, 15, 20, 0.08);
 
   /* Spacing */
   --sp-xs: 0.25em;
@@ -38,6 +47,11 @@
   --sp-xl: 3em;
   --sp-xxl: 6em;
   --sp-xxxl: 10em;
+  
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
 }
 
 /* Reset */
@@ -52,9 +66,25 @@ html {
 }
 
 body {
-  font-family: 'Montserrat', sans-serrif;
+  font-family: 'Montserrat', sans-serif;
   background-color: var(--background);
   min-width: 370px;
+  color: var(--primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-image: url('../img/bg/magicpattern-doodly-background.svg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-blend-mode: overlay;
+  background-color: rgba(255, 255, 255, 0.97);
+  transition: opacity 0.15s ease;
+}
+
+/* Language transition effect */
+body.language-transition {
+  opacity: 0.8;
 }
 
 a {
@@ -65,7 +95,9 @@ a {
 
 a.active,
 a:hover {
-  color: var(--primary);
+  color: var(--accent);
+  opacity: 0.9;
+  transition: all var(--transition-normal);
 }
 
 section,
@@ -78,8 +110,29 @@ section header {
   flex-direction: column;
   align-items: center;
   gap: var(--sp-sm);
-
   margin-bottom: var(--sp-xl);
+}
+
+section header h2 {
+  position: relative;
+  padding-bottom: 10px;
+  font-weight: 600;
+}
+
+section header h2::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent) 0%, var(--accent-light) 100%);
+  border-radius: 3px;
+  transform: translateX(-50%);
+  width: 50px;
+  height: 3px;
+  background-color: var(--accent);
 }
 
 .alternative {
@@ -105,9 +158,112 @@ section header {
 									supported by Chrome, Edge, Opera and Firefox */
 }
 
+/* Theme Transition */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-transition *:not(i) {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-changing {
+  animation: theme-fade 0.3s ease;
+}
+
+@keyframes theme-fade {
+  0% { opacity: 1; }
+  50% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+/* Assegura que todas as seções tenham fundo apropriado no tema escuro */
+body.dark-theme section {
+  background-color: var(--background);
+}
+
+body.dark-theme section.alternative {
+  background-color: var(--background-alternative);
+}
+
+body.dark-theme #banner {
+  background: linear-gradient(135deg, var(--background) 0%, var(--background-alternative) 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme {
+  background-image: url('../img/bg/magicpattern-doodly-background.svg');
+  background-blend-mode: overlay;
+  background-color: rgba(18, 18, 18, 0.97);
+}
+
 /* Medias */
 @media (min-width: 992px) {
   section {
     padding: var(--sp-xxl) var(--sp-xxxl);
   }
+}
+
+/* Email Copy Button */
+.email-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  position: relative;
+}
+
+.copy-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.copy-btn:hover {
+  background: var(--accent-dark);
+  transform: scale(1.05);
+}
+
+#email-text {
+  font-size: 0.9em;
+  word-break: break-all;
+}
+
+/* Email notification */
+.email-notification {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent);
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  animation: fadeInOut 2s ease forwards;
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; transform: translate(-50%, 10px); }
+  10% { opacity: 1; transform: translate(-50%, 0); }
+  90% { opacity: 1; transform: translate(-50%, 0); }
+  100% { opacity: 0; transform: translate(-50%, -10px); }
+}
+
+/* Dark theme adjustments */
+body.dark-theme .copy-btn {
+  background: var(--accent-dark);
+}
+
+body.dark-theme .copy-btn:hover {
+  background: var(--accent);
 }

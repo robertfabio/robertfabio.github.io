@@ -1,0 +1,102 @@
+/* Estilos específicos para os cartões mínimos (bolhas de contato) */
+
+.card-min {
+  width: min-content;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  border-radius: 50%;
+  transition: all var(--transition-normal);
+  background: white;
+  border-left: none;
+  box-shadow: var(--card-shadow) 0px 8px 24px;
+  border: 1px solid rgba(10, 15, 20, 0.03);
+  overflow: hidden;
+}
+
+.card-min i {
+  font-size: 1.2rem;
+  transition: all var(--transition-normal);
+}
+
+.card-min:hover {
+  transform: translateY(-5px) scale(1.05);
+  border-left: none;
+  box-shadow: var(--card-shadow-hover) 0px 10px 25px;
+  background: white;
+}
+
+.card-min::before,
+.card-min::after {
+  display: none;
+}
+
+/* Tema escuro para cards mínimos - especificidade aumentada */
+html body.dark-theme .card-min,
+html body.dark-theme #contact .card-min {
+  background-color: #1e1e1e !important;
+  color: var(--accent-light);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid rgba(255, 255, 255, 0.05) !important;
+}
+
+html body.dark-theme .card-min:hover,
+html body.dark-theme #contact .card-min:hover {
+  background-color: #1e1e1e !important;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Estilos específicos para contatos */
+#contact .card-min {
+  text-align: center;
+  margin: 0 var(--sp-sm);
+}
+
+#contact .card-min i {
+  color: var(--primary);
+}
+
+#contact .card-min i.fa-github {
+  color: #333;
+}
+
+#contact .card-min i.fa-linkedin-in {
+  color: #0077b5;
+}
+
+body.dark-theme #contact .card-min i {
+  color: #f5f5f5;
+}
+
+body.dark-theme #contact .card-min i.fa-github {
+  color: #f5f5f5;
+}
+
+body.dark-theme #contact .card-min i.fa-linkedin-in {
+  color: #f5f5f5;
+}
+
+/* Mantém a cor vermelha para o ícone PDF em ambos os temas */
+#contact .card-min i.fa-file-pdf {
+  color: #e74c3c !important;
+}
+
+/* Garantir que os elementos before/after não apareçam */
+html body.dark-theme .card-min::before,
+html body.dark-theme .card-min::after,
+html body.dark-theme #contact .card-min::before,
+html body.dark-theme #contact .card-min::after {
+  display: none !important;
+}
+
+/* Garantir que o fundo seja sobreposto mesmo em hover */
+html body.dark-theme .card-min:hover,
+html body.dark-theme #contact .card-min:hover,
+html body.dark-theme .card.card-min:hover,
+html body.dark-theme #contact .card.card-min:hover {
+  background-color: #1e1e1e !important;
+  border-left: none !important;
+} 
