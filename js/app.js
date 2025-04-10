@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize language selector functionality
   initializeLanguageSelector();
 
-  // Menu Toggle Functionality
+  // Menu Toggle Functionality - Improved for mobile
   if (menuToggle && mainNav) {
     let isMenuOpen = false;
 
@@ -295,9 +295,13 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Adiciona classe ao body para prevenir scroll
       document.body.classList.toggle('menu-open', open);
+      
+      // Adiciona uma transição suave para o botão do menu
+      menuToggle.style.transition = 'all 0.3s ease';
     }
 
-    menuToggle.addEventListener('click', function() {
+    menuToggle.addEventListener('click', function(event) {
+      event.stopPropagation(); // Previne que o evento se propague
       toggleMenu(!isMenuOpen);
     });
 
@@ -345,6 +349,38 @@ document.addEventListener('DOMContentLoaded', function() {
     mainNav.addEventListener('click', function(event) {
       event.stopPropagation();
     });
+    
+    // Ajusta o menu quando a orientação do dispositivo muda
+    window.addEventListener('resize', function() {
+      if (window.innerWidth > 480 && isMenuOpen) {
+        toggleMenu(false);
+      }
+    });
+    
+    // Adiciona efeito de toque para dispositivos móveis
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    document.addEventListener('touchstart', function(event) {
+      touchStartX = event.changedTouches[0].screenX;
+    }, false);
+    
+    document.addEventListener('touchend', function(event) {
+      touchEndX = event.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+    
+    function handleSwipe() {
+      if (touchEndX < touchStartX - 75 && !isMenuOpen) {
+        // Swipe da direita para a esquerda - abre o menu
+        toggleMenu(true);
+      }
+      
+      if (touchEndX > touchStartX + 75 && isMenuOpen) {
+        // Swipe da esquerda para a direita - fecha o menu
+        toggleMenu(false);
+      }
+    }
   }
 });
 

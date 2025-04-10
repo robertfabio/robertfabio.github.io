@@ -100,6 +100,11 @@
   body {
     padding-top: 60px;
   }
+  
+  #topbar {
+    position: fixed;
+    top: 0;
+  }
 
   .topbar {
     padding: 1rem;
@@ -112,6 +117,19 @@
 
   .menu-toggle {
     display: flex;
+    position: relative;
+    z-index: 1002; /* Maior que o z-index do menu para ficar sempre visível */
+    background: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: -10px;
+  }
+
+  .menu-toggle span {
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    background-color: var(--primary);
   }
 
   .menu-toggle.active span:nth-child(1) {
@@ -133,31 +151,37 @@
     width: 80%;
     max-width: 300px;
     height: 100vh;
-    background-color: var(--bg-color);
+    background-color: var(--background);
     padding: 80px 2rem 2rem;
-    transition: right 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    z-index: 10;
+    z-index: 1001;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
   }
 
   #main-nav.active {
     right: 0;
   }
 
-  .nav-links {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 1.5rem;
+  #main-nav a {
+    font-size: 1.2rem;
+    padding: 0.5rem 0;
+    display: block;
+    width: 100%;
+    border-bottom: 1px solid var(--line-gray);
   }
 
-  .nav-links a {
-    font-size: 1.2rem;
+  #main-nav a:last-of-type {
+    border-bottom: none;
   }
 
   .language-selector {
     position: absolute;
     bottom: 2rem;
-    left: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   body.menu-open {
@@ -165,8 +189,12 @@
   }
 
   .dark-theme #main-nav {
-    background-color: var(--bg-color);
+    background-color: var(--background);
     box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+  }
+  
+  .dark-theme .menu-toggle span {
+    background-color: var(--primary);
   }
 }
 
@@ -298,6 +326,20 @@ body.dark-theme #topbar {
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+body.dark-theme .menu-toggle span {
+  background-color: var(--primary);
+}
+
+body.dark-theme #main-nav {
+  background-color: var(--background);
+  box-shadow: -5px 0 15px rgba(0, 0, 0, 0.3);
+}
+
+body.dark-theme #main-nav a {
+  color: var(--primary);
+  border-bottom-color: var(--line-gray);
 }
 
 body.dark-theme .card,
