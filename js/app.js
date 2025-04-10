@@ -6,7 +6,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   // Topbar functionality
   const topbar = document.getElementById('topbar');
-  const toggler = document.getElementById('topbar-toggler');
   const nav = document.querySelector('#topbar nav');
   const logo = document.querySelector('#topbar .logo');
   const logoButton = document.getElementById('logo-button');
@@ -190,21 +189,6 @@ document.addEventListener('DOMContentLoaded', function() {
   sections.forEach(section => {
     sectionObserver.observe(section);
   });
-
-  // Toggle navigation menu with smooth animation
-  if (toggler) {
-    toggler.addEventListener('click', function() {
-      nav.classList.toggle('show');
-      toggler.classList.toggle('active');
-      
-      // Add rotation animation to toggler icon
-      const togglerIcon = toggler.querySelector('i');
-      if (togglerIcon) {
-        togglerIcon.style.transition = 'transform 0.3s ease';
-        togglerIcon.style.transform = nav.classList.contains('show') ? 'rotate(90deg)' : 'rotate(0deg)';
-      }
-    });
-  }
 
   // Experience section tabs
   const experiences = document.querySelectorAll('.experience');
