@@ -41,7 +41,7 @@
 
 #experience .experience {
   cursor: pointer;
-  padding: var(--sp-md) var(--sp-lg);
+  padding: var(--sp-sm) var(--sp-md);
   opacity: 0.85;
   background-color: white;
   border-radius: 12px;
@@ -254,5 +254,47 @@
 @media (min-width: 992px) {
   .exp-descriptions {
     padding: var(--sp-xl) var(--sp-xxl);
+  }
+}
+
+@media (max-width: 480px) {
+  #experience {
+    padding-top: var(--sp-sm);
+    padding-bottom: var(--sp-sm);
+  }
+  
+  #experience .content-grid {
+    gap: var(--sp-sm);
+  }
+  
+  #experience .experience {
+    padding: var(--sp-xs) var(--sp-sm);
+  }
+  
+  .experience h4 {
+    font-size: 0.9rem;
+    margin-bottom: var(--sp-xs);
+  }
+  
+  .experience p {
+    font-size: 0.85rem;
+  }
+  
+  .experience small {
+    font-size: 0.8rem;
+  }
+  
+  .exp-descriptions {
+    padding: var(--sp-md);
+    margin-top: var(--sp-sm);
+  }
+  
+  .exp-description h2 {
+    font-size: 1.2rem;
+  }
+  
+  .exp-description ul li {
+    font-size: 0.85rem;
+    margin-bottom: var(--sp-xs);
   }
 }
