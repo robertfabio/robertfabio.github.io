@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
   const logoMenu = document.getElementById('logo-menu');
   const themeToggle = document.getElementById('theme-toggle');
   const shareButton = document.getElementById('share-button');
+  const menuToggle = document.getElementById('menu-toggle');
+  const mainNav = document.getElementById('main-nav');
 
   // Add shine effect to logo
   if (logo) {
@@ -280,6 +282,30 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Initialize language selector functionality
   initializeLanguageSelector();
+
+  // Menu Toggle Functionality
+  if (menuToggle && mainNav) {
+    menuToggle.addEventListener('click', function() {
+      menuToggle.classList.toggle('active');
+      mainNav.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!menuToggle.contains(event.target) && !mainNav.contains(event.target)) {
+        menuToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+      }
+    });
+
+    // Close menu when clicking a nav link
+    mainNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', function() {
+        menuToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+      });
+    });
+  }
 });
 
 /**

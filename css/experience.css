@@ -3,6 +3,8 @@
 #experience {
   position: relative;
   overflow: hidden;
+  padding-top: var(--sp-md);
+  padding-bottom: var(--sp-md);
 }
 
 #experience::after {
@@ -221,7 +223,19 @@
   background-color: var(--accent);
 }
 
+@media (min-width: 576px) {
+  #experience {
+    padding-top: var(--sp-lg);
+    padding-bottom: var(--sp-lg);
+  }
+}
+
 @media (min-width: 768px) {
+  #experience {
+    padding-top: var(--sp-xl);
+    padding-bottom: var(--sp-xl);
+  }
+  
   #experience .content-grid {
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-areas:
