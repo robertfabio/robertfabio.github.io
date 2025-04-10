@@ -1,6 +1,6 @@
-# Portfólio de Fábio Gurgel
+# Portfólio
 
-Este é o repositório do meu site de portfólio pessoal, desenvolvido com HTML, CSS e JavaScript vanilla.
+Este é o repositório do meu site de portfólio pessoal.
 
 ## Características
 
@@ -26,41 +26,13 @@ A paleta de cores utiliza tons elegantes de azul e preto:
   - Branco (`#FFFFFF`) - Fundo principal
   - Light Gray (`#F8F9FA`) - Fundo alternativo neutro muito claro
 
-## Tecnologias Utilizadas
+## Tecnologias
 
 - HTML5
 - CSS3 (Flexbox, Grid, Variáveis CSS)
 - JavaScript (Vanilla)
-- FontAwesome para ícones
-- Animate.css para animações
+- FontAwesome
+- Animate.css
 - Google Fonts (Montserrat)
 
-## Estrutura do Projeto
-
-```
-/
-├── css/
-│   ├── main.css
-│   ├── card.css
-│   ├── topbar.css
-│   ├── banner.css
-│   ├── experience.css
-│   ├── education.css
-│   ├── projects.css
-│   ├── contact.css
-│   ├── language-selector.css
-│   └── ...
-├── js/
-│   ├── app.js
-│   └── i18n.js
-├── img/
-│   └── ...
-├── files/
-│   └── cv.pdf
-└── index.html
-```
-
-## Contato
-
-- Email: fabio.filho25453@alunos.ufersa.edu.br
-- GitHub: [robertfabio](https://github.com/robertfabio)
+  
