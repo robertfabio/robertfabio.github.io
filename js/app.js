@@ -285,18 +285,31 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Menu Toggle Functionality
   if (menuToggle && mainNav) {
+    // Evita o problema de scroll quando o menu está aberto
+    function toggleBodyScroll(isOpen) {
+      if (isOpen) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
+    }
+
     menuToggle.addEventListener('click', function() {
       menuToggle.classList.toggle('active');
       mainNav.classList.toggle('active');
-      document.body.classList.toggle('menu-open');
+      
+      const isMenuOpen = mainNav.classList.contains('active');
+      toggleBodyScroll(isMenuOpen);
     });
 
     // Close menu when clicking outside
     document.addEventListener('click', function(event) {
-      if (!menuToggle.contains(event.target) && !mainNav.contains(event.target)) {
+      if (!menuToggle.contains(event.target) && 
+          !mainNav.contains(event.target) && 
+          mainNav.classList.contains('active')) {
         menuToggle.classList.remove('active');
         mainNav.classList.remove('active');
-        document.body.classList.remove('menu-open');
+        toggleBodyScroll(false);
       }
     });
 
@@ -305,8 +318,32 @@ document.addEventListener('DOMContentLoaded', function() {
       link.addEventListener('click', function() {
         menuToggle.classList.remove('active');
         mainNav.classList.remove('active');
-        document.body.classList.remove('menu-open');
+        toggleBodyScroll(false);
+        
+        // Adiciona um pequeno delay para a rolagem suave
+        if (this.getAttribute('href').startsWith('#')) {
+          const targetId = this.getAttribute('href');
+          const targetElement = document.querySelector(targetId);
+          
+          if (targetElement) {
+            setTimeout(() => {
+              targetElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }, 300);
+          }
+        }
       });
+    });
+
+    // Fecha o menu quando pressionar a tecla ESC
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && mainNav.classList.contains('active')) {
+        menuToggle.classList.remove('active');
+        mainNav.classList.remove('active');
+        toggleBodyScroll(false);
+      }
     });
   }
 });

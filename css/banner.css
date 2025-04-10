@@ -97,14 +97,23 @@
 }
 
 @media (max-width: 480px) {
+  #banner {
+    padding-top: var(--sp-xl);
+    padding-bottom: var(--sp-md);
+  }
+  
   #banner h2 {
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     line-height: 1.3;
     margin-bottom: var(--sp-md);
   }
   
   #banner .cards {
     gap: var(--sp-sm);
+  }
+  
+  #banner .cards .card {
+    padding: var(--sp-sm) var(--sp-md);
   }
 }
 
