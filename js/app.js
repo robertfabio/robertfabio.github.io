@@ -285,45 +285,38 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Menu Toggle Functionality
   if (menuToggle && mainNav) {
-    // Evita o problema de scroll quando o menu está aberto
-    function toggleBodyScroll(isOpen) {
-      if (isOpen) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
+    let isMenuOpen = false;
+
+    function toggleMenu(open) {
+      isMenuOpen = open;
+      menuToggle.classList.toggle('active', open);
+      mainNav.classList.toggle('active', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+      
+      // Adiciona classe ao body para prevenir scroll
+      document.body.classList.toggle('menu-open', open);
     }
 
     menuToggle.addEventListener('click', function() {
-      menuToggle.classList.toggle('active');
-      mainNav.classList.toggle('active');
-      
-      const isMenuOpen = mainNav.classList.contains('active');
-      toggleBodyScroll(isMenuOpen);
+      toggleMenu(!isMenuOpen);
     });
 
-    // Close menu when clicking outside
+    // Fecha o menu quando clicar em qualquer lugar fora dele
     document.addEventListener('click', function(event) {
-      if (!menuToggle.contains(event.target) && 
-          !mainNav.contains(event.target) && 
-          mainNav.classList.contains('active')) {
-        menuToggle.classList.remove('active');
-        mainNav.classList.remove('active');
-        toggleBodyScroll(false);
+      if (isMenuOpen && !menuToggle.contains(event.target) && !mainNav.contains(event.target)) {
+        toggleMenu(false);
       }
     });
 
-    // Close menu when clicking a nav link
+    // Fecha o menu quando clicar em um link
     mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function() {
-        menuToggle.classList.remove('active');
-        mainNav.classList.remove('active');
-        toggleBodyScroll(false);
-        
-        // Adiciona um pequeno delay para a rolagem suave
+      link.addEventListener('click', function(e) {
         if (this.getAttribute('href').startsWith('#')) {
+          e.preventDefault();
           const targetId = this.getAttribute('href');
           const targetElement = document.querySelector(targetId);
+          
+          toggleMenu(false);
           
           if (targetElement) {
             setTimeout(() => {
@@ -331,19 +324,26 @@ document.addEventListener('DOMContentLoaded', function() {
                 behavior: 'smooth',
                 block: 'start'
               });
+              // Atualiza a URL sem recarregar a página
+              history.pushState(null, '', targetId);
             }, 300);
           }
+        } else {
+          toggleMenu(false);
         }
       });
     });
 
-    // Fecha o menu quando pressionar a tecla ESC
+    // Fecha o menu quando pressionar ESC
     document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape' && mainNav.classList.contains('active')) {
-        menuToggle.classList.remove('active');
-        mainNav.classList.remove('active');
-        toggleBodyScroll(false);
+      if (event.key === 'Escape' && isMenuOpen) {
+        toggleMenu(false);
       }
+    });
+
+    // Previne que o menu feche quando clicar dentro dele
+    mainNav.addEventListener('click', function(event) {
+      event.stopPropagation();
     });
   }
 });
