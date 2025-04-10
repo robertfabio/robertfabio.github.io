@@ -3,8 +3,8 @@
 #projects {
   position: relative;
   overflow: hidden;
-  padding-top: var(--sp-xl);
-  padding-bottom: var(--sp-xxl);
+  padding-top: var(--sp-lg);
+  padding-bottom: var(--sp-xl);
 }
 
 #projects::before {
@@ -22,9 +22,16 @@
 .projects {
   display: grid;
   grid-template-columns: 1fr;
-  gap: var(--sp-xl);
+  gap: var(--sp-lg);
   position: relative;
   z-index: 1;
+}
+
+@media (min-width: 576px) {
+  #projects {
+    padding-top: var(--sp-xl);
+    padding-bottom: var(--sp-xxl);
+  }
 }
 
 @media (min-width: 768px) {
@@ -42,6 +49,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
+  font-size: 1.1rem;
 }
 
 .softwares h4 i,
@@ -89,4 +97,34 @@
   display: block;
   margin-top: 5px;
   color: var(--primary-light);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 480px) {
+  .softwares h4,
+  .apps h4 {
+    font-size: 1rem;
+    gap: 6px;
+  }
+  
+  .project-item, .skill-item {
+    margin-bottom: var(--sp-sm);
+    padding: var(--sp-xs) var(--sp-sm);
+  }
+  
+  .project-item:hover, .skill-item:hover {
+    padding-left: var(--sp-sm);
+  }
+  
+  .project-item small, .skill-item small {
+    font-size: 0.8rem;
+    line-height: 1.3;
+  }
+}
+
+@media (min-width: 576px) {
+  .project-item small, .skill-item small {
+    font-size: 0.9rem;
+  }
 }

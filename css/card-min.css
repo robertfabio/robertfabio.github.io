@@ -99,4 +99,19 @@ html body.dark-theme .card.card-min:hover,
 html body.dark-theme #contact .card.card-min:hover {
   background-color: #1e1e1e !important;
   border-left: none !important;
+}
+
+@media (max-width: 480px) {
+  .card-min {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .card-min i {
+    font-size: 1rem;
+  }
+  
+  #contact .card-min {
+    margin: 0 var(--sp-xs);
+  }
 } 

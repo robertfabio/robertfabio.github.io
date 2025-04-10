@@ -2,7 +2,8 @@
 
 #banner {
   position: relative;
-  padding-top: var(--sp-xxl);
+  padding-top: var(--sp-lg);
+  padding-bottom: var(--sp-lg);
   background: linear-gradient(135deg, var(--background) 0%, var(--background-alternative) 100%);
   overflow: hidden;
   border-bottom: 1px solid rgba(10, 15, 20, 0.1);
@@ -42,11 +43,11 @@
 }
 
 #banner h2 {
-  margin-bottom: var(--sp-xl);
+  margin-bottom: var(--sp-lg);
   text-align: center;
   font-weight: 700;
-  font-size: 2.2rem;
-  line-height: 1.3;
+  font-size: 1.6rem;
+  line-height: 1.4;
   position: relative;
   z-index: 1;
   text-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
@@ -78,7 +79,7 @@
 
 #banner .cards {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr;
   gap: var(--sp-md);
   position: relative;
   z-index: 1;
@@ -87,11 +88,55 @@
   perspective: 1000px;
 }
 
+#banner .cards .card {
+  min-height: 80px;
+}
+
 #banner .cards .card:first-child {
-  grid-column: 1/3;
+  grid-column: auto;
+}
+
+@media (max-width: 480px) {
+  #banner h2 {
+    font-size: 1.4rem;
+    line-height: 1.3;
+    margin-bottom: var(--sp-md);
+  }
+  
+  #banner .cards {
+    gap: var(--sp-sm);
+  }
+}
+
+@media (min-width: 576px) {
+  #banner {
+    padding-top: var(--sp-xl);
+    padding-bottom: var(--sp-xl);
+  }
+  
+  #banner h2 {
+    font-size: 2rem;
+  }
+  
+  #banner .cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  #banner .cards .card:first-child {
+    grid-column: 1/3;
+  }
 }
 
 @media (min-width: 768px) {
+  #banner {
+    padding-top: var(--sp-xxl);
+  }
+  
+  #banner h2 {
+    margin-bottom: var(--sp-xl);
+    font-size: 2.2rem;
+  }
+  
   #banner .cards {
     grid-template-columns: repeat(3, 1fr);
     gap: var(--sp-lg);
@@ -101,6 +146,7 @@
     grid-column: 1/2;
   }
 }
+
 @media (min-width: 992px) {
   #banner .cards {
     gap: var(--sp-xl);

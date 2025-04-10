@@ -5,20 +5,27 @@
 
 .container {
   width: 100%;
-  padding-inline: var(--sp-lg);
-}
-
-.container {
-  width: 100%;
-  padding-right: var(0.75rem);
-  padding-left: var(0.75rem);
+  padding-inline: var(--sp-sm);
   margin-right: auto;
   margin-left: auto;
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-inline: var(--sp-sm);
+  }
+}
+
+@media (min-width: 481px) and (max-width: 575px) {
+  .container {
+    padding-inline: var(--sp-md);
+  }
 }
 
 @media (min-width: 576px) {
   .container {
     max-width: 540px;
+    padding-inline: var(--sp-lg);
   }
 }
 @media (min-width: 768px) {
