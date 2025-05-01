@@ -27,8 +27,8 @@
     'exp-3 exp-4'
     'description description';
   align-items: stretch;
-  justify-items: start;
-  gap: var(--sp-md) var(--sp-lg);
+  justify-items: stretch; /* Alterado para stretch para ocupar todo o espaço */
+  gap: var(--sp-md); /* Ajustado para espaçamento uniforme */
   position: relative;
   z-index: 1;
 }
@@ -41,19 +41,20 @@
 
 #experience .experience {
   cursor: pointer;
-  padding: var(--sp-sm) var(--sp-md);
-  opacity: 0.85;
+  padding: var(--sp-xs) var(--sp-sm); /* Reduzido o padding para cards menores */
+  opacity: 0.9;
   background-color: white;
-  border-radius: 12px;
+  border-radius: 10px; /* Reduzido o raio da borda */
   transition: all var(--transition-normal);
-  border-bottom: 3px solid transparent;
+  border-bottom: 2px solid transparent; /* Reduzida a espessura da borda */
   width: 100%;
   position: relative;
   overflow: hidden;
-  box-shadow: var(--card-shadow-alt) 0px 6px 16px;
-  height: 100%;
+  box-shadow: var(--card-shadow-alt) 0px 4px 12px; /* Sombra mais sutil */
+  min-height: 80px; /* Altura mínima em vez de 100% */
   display: flex;
   flex-direction: column;
+  justify-content: center;
   border: 1px solid rgba(10, 15, 20, 0.03);
 }
 
@@ -64,9 +65,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, transparent 0%, rgba(131, 147, 224, 0.08) 100%);
+  background: linear-gradient(135deg, transparent 0%, rgba(131, 147, 224, 0.12) 100%);
   opacity: 0;
-  transition: opacity var(--transition-normal);
+  transition: all var(--transition-normal);
   z-index: -1;
 }
 
@@ -93,30 +94,38 @@
 }
 
 .experience h4 {
-  margin-bottom: var(--sp-sm);
+  margin-bottom: var(--sp-xs); /* Reduzido o espaçamento inferior */
   font-weight: 600;
   color: var(--primary);
+  line-height: 1.2; /* Reduzida a altura da linha */
+  font-size: 0.95rem; /* Reduzido o tamanho da fonte */
 }
 
 .experience span,
 .experience p {
   color: var(--primary-light);
-  font-weight: 300;
+  font-weight: 400;
+  line-height: 1.5;
+  margin-bottom: 0;
 }
 
-.experience p + small {
-  display: inline-block;
-  margin-top: var(--sp-md);
-  font-weight: 500;
-  color: var(--accent-dark);
-}
+/* Regra movida para baixo com ajustes */
 
 #experience .experience.active,
 #experience .experience:hover {
   opacity: 1;
-  box-shadow: var(--card-shadow) 0px 10px 30px;
-  transform: translateY(-5px);
-  border-bottom: 3px solid var(--accent);
+  box-shadow: var(--card-shadow) 0px 6px 20px; /* Sombra menor no hover */
+  transform: translateY(-3px); /* Movimento menor no hover */
+  border-bottom: 2px solid var(--accent); /* Borda mais fina */
+}
+
+.experience p + small {
+  display: inline-block;
+  margin-top: var(--sp-xs); /* Reduzido o espaçamento superior */
+  font-weight: 500;
+  color: var(--accent-dark);
+  align-self: flex-start;
+  font-size: 0.8rem; /* Reduzido o tamanho da fonte */
 }
 
 #experience .exp-1 {
@@ -137,7 +146,7 @@
 
 .exp-descriptions {
   grid-area: description;
-  padding: var(--sp-xl);
+  padding: var(--sp-lg); /* Reduzido o padding */
   background-color: white;
   border-radius: 12px;
   box-shadow: var(--card-shadow) 0px 10px 30px;
@@ -264,24 +273,27 @@
   }
   
   #experience .content-grid {
-    gap: var(--sp-sm);
+    gap: var(--sp-xs); /* Reduzido o espaçamento entre cards */
   }
   
   #experience .experience {
-    padding: var(--sp-xs) var(--sp-sm);
+    padding: var(--sp-xs);
+    min-height: 70px; /* Reduzida a altura mínima */
   }
   
   .experience h4 {
-    font-size: 0.9rem;
+    font-size: 0.9rem; /* Reduzido o tamanho da fonte */
     margin-bottom: var(--sp-xs);
   }
   
   .experience p {
-    font-size: 0.85rem;
+    font-size: 0.8rem; /* Reduzido o tamanho da fonte */
+    line-height: 1.3; /* Reduzida a altura da linha */
   }
   
   .experience small {
-    font-size: 0.8rem;
+    font-size: 0.75rem; /* Reduzido o tamanho da fonte */
+    margin-top: var(--sp-xs);
   }
   
   .exp-descriptions {

@@ -20,7 +20,7 @@
   justify-content: space-between;
   padding: 0.8rem 1.5rem;
   background-color: inherit;
-  transition: padding 0.3s ease;
+  /* transition: padding 0.3s ease; */ /* Removido para evitar mudança de tamanho */
   position: relative;
 }
 
@@ -214,9 +214,9 @@ body.dark-theme .menu-toggle span {
 
 /* Desktop Styles */
 @media (min-width: 481px) {
-  #topbar {
-    position: sticky;
-  }
+  /* #topbar {
+    position: sticky; /* Removido para manter posição fixa */
+  } */
 
   .topbar {
     padding: 1rem 2rem;

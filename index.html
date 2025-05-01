@@ -63,8 +63,8 @@
         </button>
 
         <nav id="main-nav">
-          <a href="#experience" data-i18n="nav-experience">Experiência</a>
           <a href="#education" data-i18n="nav-education">Educação</a>
+          <a href="#experience" data-i18n="nav-experience">Experiência</a>
           <a href="#projects" data-i18n="nav-projects">Projetos</a>
           <a href="#contact" data-i18n="nav-contact">Contato</a>
           
@@ -102,8 +102,32 @@
       </div>
     </section>
 
+    <!-- Education -->
+    <section id="education" class="alternative">
+      <div class="container">
+        <header>
+          <h2 class="animate__animated animate__fadeIn" data-i18n="education-title">Educação</h2>
+          <p data-i18n="education-subtitle">Formação Acadêmica</p>
+        </header>
+
+        <div class="cards animate__animated animate__fadeInUp animate__delay-1s">
+          <div class="card">
+            <h4 data-i18n="education-bsc-cs">Bacharelado em Ciência da Computação</h4>
+            <p data-i18n="education-ufersa">Universidade Federal Rural do Semi-Árido (UFERSA)</p>
+            <p>2025 - 2029 (2º <span data-i18n="education-semester">semestre</span>)</p>
+          </div>
+
+          <div class="card">
+            <h4 data-i18n="education-bsc-business">Bacharelado em Administração</h4>
+            <p data-i18n="education-ufersa">Universidade Federal Rural do Semi-Árido (UFERSA)</p>
+            <p>2024 - 2025 (2 <span data-i18n="education-semesters">semestres</span> <span data-i18n="education-completed">concluídos</span>)</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Experiences -->
-    <section id="experience" class="alternative">
+    <section id="experience">
       <div class="container">
         <header>
           <h2 class="animate__animated animate__fadeIn" data-i18n="experience-title">Experiências Profissionais</h2>
@@ -143,30 +167,6 @@
                 <li data-i18n="experience-coordinated-activities">Coordenação de atividades administrativas</li>
               </ul>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Education -->
-    <section id="education">
-      <div class="container">
-        <header>
-          <h2 class="animate__animated animate__fadeIn" data-i18n="education-title">Educação</h2>
-          <p data-i18n="education-subtitle">Formação Acadêmica</p>
-        </header>
-
-        <div class="cards animate__animated animate__fadeInUp animate__delay-1s">
-          <div class="card">
-            <h4 data-i18n="education-bsc-cs">Bacharelado em Ciência da Computação</h4>
-            <p data-i18n="education-ufersa">Universidade Federal Rural do Semi-Árido (UFERSA)</p>
-            <p>2025 - 2029 (2º <span data-i18n="education-semester">semestre</span>)</p>
-          </div>
-
-          <div class="card">
-            <h4 data-i18n="education-bsc-business">Bacharelado em Administração</h4>
-            <p data-i18n="education-ufersa">Universidade Federal Rural do Semi-Árido (UFERSA)</p>
-            <p>2024 - 2025 (2 <span data-i18n="education-semesters">semestres</span> <span data-i18n="education-completed">concluídos</span>)</p>
           </div>
         </div>
       </div>
@@ -252,55 +252,63 @@
       </div>
     </section>
 
-    <!-- Contacts -->
+    <!-- Dentro da seção de contato -->
     <section id="contact">
-      <div class="container">
-        <header>
-          <h2 class="animate__animated animate__fadeIn" data-i18n="contact-title">Contato</h2>
-          <p data-i18n="contact-subtitle">Conecte-se comigo nas redes sociais</p>
-        </header>
-
-        <div class="links animate__animated animate__fadeInUp animate__delay-1s">
-          <a
-            class="card card-min"
-            href="https://github.com/robertfabio"
-            target="_blank"
-            rel="noopener"
-            title="GitHub"
-          >
-            <i class="fab fa-github fa-lg"></i>
-          </a>
-
-          <a
-            class="card card-min"
-            href="https://www.linkedin.com/in/f%C3%A1bio-gurgel/"
-            target="_blank"
-            rel="noopener"
-            title="LinkedIn"
-          >
-            <i class="fab fa-linkedin-in fa-lg"></i>
-          </a>
-
-          <a
-            class="card card-min"
-            href="./files/cv.pdf"
-            target="_blank"
-            rel="noopener"
-            title="Download CV"
-          >
-            <i class="fas fa-file-pdf fa-lg"></i>
-          </a>
-          
-          <a
-            class="card card-min"
-            href="#"
-            id="contact-email-btn"
-            title="Copiar email: fabio.filho25453@alunos.ufersa.edu.br"
-          >
-            <i class="fas fa-envelope fa-lg"></i>
-          </a>
+        <div class="container">
+            <h2 data-i18n="contact-title">Contato</h2>
+            <p data-i18n="contact-subtitle">Conecte-se comigo nas redes sociais</p>
+            
+            <div class="social-links">
+                <!-- ... seus outros links sociais ... -->
+            </div>
+    
+            <!-- Adicione este container para o badge -->
+            <div class="linkedin-badge-container">
+                <div class="badge-base LI-profile-badge light-theme-badge" data-locale="pt_BR" data-size="large" data-theme="light" data-type="VERTICAL" data-vanity="fábio-gurgel" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bio-gurgel?trk=profile-badge">Fábio Gurgel</a></div>
+                <div class="badge-base LI-profile-badge dark-theme-badge" data-locale="pt_BR" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="fábio-gurgel" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bio-gurgel?trk=profile-badge">Fábio Gurgel</a></div>
+            </div>
+            
+            <div class="links animate__animated animate__fadeInUp animate__delay-1s">
+                <a
+                    class="card card-min"
+                    href="https://github.com/robertfabio"
+                    target="_blank"
+                    rel="noopener"
+                    title="GitHub"
+                >
+                    <i class="fab fa-github fa-lg"></i>
+                </a>
+    
+                <a
+                    class="card card-min"
+                    href="https://www.linkedin.com/in/f%C3%A1bio-gurgel/"
+                    target="_blank"
+                    rel="noopener"
+                    title="LinkedIn"
+                >
+                    <i class="fab fa-linkedin-in fa-lg"></i>
+                </a>
+    
+                <a
+                    class="card card-min"
+                    href="./files/cv.pdf"
+                    target="_blank"
+                    rel="noopener"
+                    title="Download CV"
+                >
+                    <i class="fas fa-file-pdf fa-lg"></i>
+                </a>
+                
+                <a
+                    class="card card-min"
+                    href="#"
+                    id="contact-email-btn"
+                    title="Copiar email: fabio.filho25453@alunos.ufersa.edu.br"
+                >
+                    <i class="fas fa-envelope fa-lg"></i>
+                </a>
+            </div>
         </div>
-      </div>
     </section>
 
     <footer class="container" style="font-size: small; padding-top: 0;">
@@ -312,7 +320,10 @@
     <!-- Scripts -->
     <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
-  </body>
+    
+    <!-- Adicione o script do LinkedIn aqui -->
+    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
+</body>
 </html>
 
 <!-- Inspiration -->

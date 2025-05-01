@@ -326,3 +326,27 @@ body.dark-theme .copy-btn {
 body.dark-theme .copy-btn:hover {
   background: var(--accent);
 }
+
+/* LinkedIn Badge Container */
+.linkedin-badge-container {
+  margin: 2rem auto;
+  max-width: 300px;
+}
+
+/* Mostrar apenas o badge claro no tema claro */
+.light-theme-badge {
+  display: block;
+}
+
+.dark-theme-badge {
+  display: none;
+}
+
+/* Mostrar apenas o badge escuro no tema escuro */
+body.dark-theme .light-theme-badge {
+  display: none;
+}
+
+body.dark-theme .dark-theme-badge {
+  display: block;
+}

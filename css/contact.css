@@ -131,3 +131,45 @@ body.dark-theme #contact .card-min i.fa-linkedin-in {
     height: 45px;
   }
 }
+
+/* Estilos para o container do badge do LinkedIn */
+.linkedin-badge-container {
+    margin-top: 2rem; /* Ajuste o espaçamento conforme necessário */
+    display: flex;
+    justify-content: center; /* Centraliza o badge se necessário */
+}
+
+/* Esconde o badge escuro por padrão (tema claro) */
+.dark-theme-badge {
+    display: none;
+}
+
+/* Mostra o badge escuro e esconde o claro quando o tema escuro está ativo */
+body.dark-theme .dark-theme-badge {
+    display: block;
+}
+
+body.dark-theme .light-theme-badge {
+    display: none;
+}
+
+/* Garante que o badge base tenha display block para ocupar espaço */
+.badge-base {
+   display: block; 
+}
+
+/* Mantém a cor vermelha para o ícone PDF em ambos os temas */
+#contact .card-min i.fa-file-pdf {
+  color: #e74c3c !important;
+}
+
+@media (max-width: 480px) {
+  #contact .links {
+    gap: var(--sp-sm);
+  }
+  
+  #contact .card-min {
+    width: 45px;
+    height: 45px;
+  }
+}
