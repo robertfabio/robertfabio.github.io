@@ -75,7 +75,7 @@ section {
 
 .logo {
 	color: var(--primary);
-
+	position: absolute;
 	/* font-family: 'Playfair Display', sans-serif; */
 	font-size: 1.25rem;
 	font-weight: 600;

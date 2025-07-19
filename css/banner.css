@@ -66,6 +66,35 @@
   display: inline-block;
 }
 
+/* Animação de digitação para o texto do banner */
+#banner h2 .typing-text {
+  display: inline-block;
+  overflow: hidden;
+  border-right: 2px solid var(--accent);
+  white-space: nowrap;
+  animation: 
+    typing 3.5s steps(30, end),
+    blink-caret 0.75s step-end infinite;
+  margin: 0 auto;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: var(--accent) }
+}
+
+/* Efeito hover suave nos spans */
+#banner h2 span:hover {
+  transform: translateY(-2px);
+  text-shadow: 0 5px 15px rgba(131, 147, 224, 0.3);
+  transition: all 0.3s ease;
+}
+
 #banner h4 {
   margin-bottom: var(--sp-sm);
   font-weight: 600;

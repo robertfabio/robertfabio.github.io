@@ -62,8 +62,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Verificar se a API Web Share está disponível
       if (navigator.share) {
         navigator.share({
-          title: 'Portfólio de Fábio Gurgel',
-          text: 'Confira o portfólio de Fábio Gurgel!',
+          title: 'Portfólio de Fábio Roberto Gurgel',
+          text: 'Confira o portfólio de Fábio Roberto',
           url: window.location.href
         })
         .then(() => {
@@ -428,4 +428,12 @@ function createLanguageSelector() {
   
   // Add button to navigation
   nav.appendChild(langToggle);
+  
+
+
+
+
+
+
+  
 }

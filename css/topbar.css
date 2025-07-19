@@ -5,28 +5,29 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
-  transition: all var(--transition-normal);
   border-bottom: 1px solid rgba(30, 41, 59, 0.08);
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   width: 100%;
+  height: 60px; /* Altura fixa para evitar mudanças durante scroll */
 }
 
 .topbar {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  padding: 0.8rem 1.5rem;
-  background-color: inherit;
-  /* transition: padding 0.3s ease; */ /* Removido para evitar mudança de tamanho */
+  align-items: center;
+  padding: 0 1.5rem;
+  background-color: transparent;
   position: relative;
+  gap: 2rem;
+  height: 100%;
 }
 
 /* Logo styles */
 #topbar .logo {
-  height: 40px;
+  height: 35px;
   padding: 0.25em 0.5em;
   color: var(--primary);
   font-weight: 700;
@@ -35,10 +36,11 @@
   border-left: 3px solid var(--accent);
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: baseline;
   transition: all var(--transition-normal);
   position: relative;
-  z-index: 1001;
+  z-index: 100;
+  cursor: pointer;
 }
 
 /* Menu Hamburger */
@@ -46,8 +48,8 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 30px;
-  height: 21px;
+  width: 20px;
+  height: 14px;
   background: none;
   border: none;
   cursor: pointer;
@@ -69,6 +71,9 @@
   display: flex;
   align-items: center;
   gap: 2rem;
+  flex: 1;
+  justify-content: center;
+  z-index: 10;
 }
 
 #topbar nav a {
@@ -177,14 +182,11 @@
     border-bottom: none;
   }
 
-  .language-selector {
-    position: absolute;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  body.menu-open {
+.language-selector {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}  body.menu-open {
     overflow: hidden;
   }
 
@@ -229,22 +231,18 @@ body.dark-theme .menu-toggle span {
   #topbar nav a {
     font-size: 1rem;
   }
-}
-
-@media (min-width: 992px) {
-  .topbar {
-    padding: 1.2rem 3rem;
-  }
-}
 
 /* Logo Container e Menu */
 .logo-container {
+  display: flex;
+  align-items: center;
   position: relative;
+  height: 100%;
 }
 
 #topbar .logo::before {
   content: '';
-  position: absolute;
+  position: sticky;
   top: 0;
   left: -100%;
   width: 100%;
@@ -254,30 +252,36 @@ body.dark-theme .menu-toggle span {
 }
 
 #topbar .logo:hover::before {
-  left: 100%;
+  position: static 100%;
 }
 
 #topbar .logo.active {
   background-color: var(--accent);
   color: white;
-  border-left: 3px solid var(--accent-dark);
+  border-left: 5px solid var(--accent-dark);
   transform: scale(1.05);
 }
 
 .logo-menu {
   position: absolute;
-  top: calc(100% + 5px);
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: flex-start;
+  gap: 2px;
+  top: 100%;
   left: 0;
-  width: 150px;
+  width: 170px;
   background-color: white;
-  border-radius: 8px;
+  border-radius: 20px;
   box-shadow: 0 5px 20px rgba(10, 15, 20, 0.15);
   opacity: 0;
-  visibility: hidden;
-  transform: translateY(-10px);
+  visibility: visible;
+  transform: translateY(0);
   transition: all 0.3s ease;
   z-index: 100;
   overflow: hidden;
+  margin-top: 5px;
 }
 
 .logo-menu.active {
@@ -288,7 +292,7 @@ body.dark-theme .menu-toggle span {
 
 .logo-menu-item {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 10px;
   padding: 12px 15px;
   color: var(--primary);

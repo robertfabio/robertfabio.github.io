@@ -80,7 +80,7 @@ const translations = {
     'copy-email': 'Copiar email',
     
     // Footer
-    'footer-designed': 'Desenvolvido com paixão por Fábio Gurgel',
+    'footer-designed': 'Desenvolvido com paixão por Fábio',
   },
   'en-US': {
     // Topbar
@@ -157,7 +157,7 @@ const translations = {
     'copy-email': 'Copy email',
     
     // Footer
-    'footer-designed': 'Designed with passion by Fábio Gurgel',
+    'footer-designed': 'Designed with passion by Fábio',
   }
 };
 

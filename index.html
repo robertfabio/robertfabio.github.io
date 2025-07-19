@@ -32,16 +32,17 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
 
-    <title>Fábio Gurgel - Portfolio</title>
+    <title>Fábio Roberto - Portfólio</title>
   </head>
 
   <body>
     <!-- Topbar -->
     <div id="topbar" class="sticky">
       <div class="topbar container">
+        <!-- Esquerda: Logo -->
         <div class="logo-container">
           <div class="logo noselect" id="logo-button">
-            <span>FG</span>
+            <span>FR</span>
           </div>
           <div class="logo-menu" id="logo-menu">
             <a href="#" class="logo-menu-item" id="theme-toggle">
@@ -56,22 +57,25 @@
           </div>
         </div>
 
-        <button class="menu-toggle" id="menu-toggle" title="Menu de navegação">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-
+        <!-- Centro: Navbar -->
         <nav id="main-nav">
           <a href="#education" data-i18n="nav-education">Educação</a>
           <a href="#experience" data-i18n="nav-experience">Experiência</a>
           <a href="#projects" data-i18n="nav-projects">Projetos</a>
           <a href="#contact" data-i18n="nav-contact">Contato</a>
-          
-          <div id="language-toggle" class="language-selector" title="PT → English / EN → Português">
-            <span>PT</span>
-          </div>
         </nav>
+
+        <!-- Direita: Seletor de linguagem -->
+        <div id="language-toggle" class="language-selector" title="PT → English / EN → Português">
+          <span>PT</span>
+        </div>
+
+        <!-- Botão menu mobile -->
+        <button class="menu-toggle" id="menu-toggle" title="Menu de navegação">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
     </div>
 
@@ -80,7 +84,9 @@
       <div class="container">
         <h2 class="animate__animated animate__fadeIn">
           <span data-i18n="banner-welcome">Bem-vindo ao Meu Portfólio</span> <br />
-          &#60;<span data-i18n="banner-developer">Desenvolvedor</span> & <span data-i18n="banner-student">Estudante</span>/&#62;
+          <div class="typing-text">
+            &#60;<span data-i18n="banner-developer">Desenvolvedor</span> & <span data-i18n="banner-student">Estudante</span>/&#62;
+          </div>
         </h2>
 
         <div class="cards animate__animated animate__fadeInUp animate__delay-1s">
@@ -262,10 +268,12 @@
                 <!-- ... seus outros links sociais ... -->
             </div>
     
+            <img class="cat-gif" src="img/cat.gif" alt="One Cat">
+
             <!-- Adicione este container para o badge -->
             <div class="linkedin-badge-container">
-                <div class="badge-base LI-profile-badge light-theme-badge" data-locale="pt_BR" data-size="large" data-theme="light" data-type="VERTICAL" data-vanity="fábio-gurgel" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bio-gurgel?trk=profile-badge">Fábio Gurgel</a></div>
-                <div class="badge-base LI-profile-badge dark-theme-badge" data-locale="pt_BR" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="fábio-gurgel" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bio-gurgel?trk=profile-badge">Fábio Gurgel</a></div>
+                <div class="badge-base LI-profile-badge light-theme-badge" data-locale="pt_BR" data-size="large" data-theme="light" data-type="VERTICAL" data-vanity="fábio-gurgel" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bioroberto?trk=profile-badge">Fábio Roberto</a></div>
+                <div class="badge-base LI-profile-badge dark-theme-badge" data-locale="pt_BR" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="fábio-gurgel" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bioroberto?trk=profile-badge">Fábio Roberto</a></div>
             </div>
             
             <div class="links animate__animated animate__fadeInUp animate__delay-1s">
@@ -281,7 +289,7 @@
     
                 <a
                     class="card card-min"
-                    href="https://www.linkedin.com/in/f%C3%A1bio-gurgel/"
+                    href="www.linkedin.com/in/fábioroberto"
                     target="_blank"
                     rel="noopener"
                     title="LinkedIn"
@@ -313,16 +321,16 @@
 
     <footer class="container" style="font-size: small; padding-top: 0;">
       <div class="animate__animated animate__fadeIn animate__delay-1s" style="display: flex; justify-content: center; align-items: center; gap: 5px; color: var(--primary-light);">
-        <span data-i18n="footer-designed">Designed with passion by Fábio Gurgel</span> © 2025
+        <span data-i18n="footer-designed">Designed with passion by Fábio R.D.G.F.</span> © 2025
       </div>
     </footer>
 
     <!-- Scripts -->
     <script src="js/i18n.js"></script>
     <script src="js/app.js"></script>
+    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     
     <!-- Adicione o script do LinkedIn aqui -->
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
 </body>
 </html>
 

@@ -24,6 +24,17 @@
   margin-top: var(--sp-md);
 }
 
+.cat-gif {
+  width: 29%;
+  height: auto;
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  z-index: 1;
+  transition: transform 0.3s ease;
+}
+
+
 #contact .card {
   display: flex;
   align-items: center;
