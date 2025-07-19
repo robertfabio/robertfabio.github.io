@@ -80,7 +80,7 @@ const translations = {
     'copy-email': 'Copiar email',
     
     // Footer
-    'footer-designed': 'Desenvolvido com paixão por Fábio',
+    'footer-designed': 'Desenvolvido com paixão por Fábio ',
   },
   'en-US': {
     // Topbar

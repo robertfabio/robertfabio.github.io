@@ -74,6 +74,8 @@
   flex: 1;
   justify-content: center;
   z-index: 10;
+  position: relative;
+  left: 12px;
 }
 
 #topbar nav a {
