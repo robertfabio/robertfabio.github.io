@@ -30,8 +30,9 @@
   --primary: #0A0F14; /* Black Pearl - Dark base */
   --primary-light: #1E293B; /* Slightly lighter than Black Pearl */
   --accent: #8393e0; /* Medium Lavender Blue */
-  --accent-light: #9dace8; /* Lighter Lavender Blue */
-  --accent-dark: #6a7ccc; /* Darker Lavender Blue */
+  --accent: #1565C0; /* Professional Blue (darker, higher contrast) */
+  --accent-light: #1E88E5; /* Lighter professional blue for highlights */
+  --accent-dark: #0D47A1; /* Darker blue for hover states */
 
   --background: #FFFFFF;
   --background-alternative: #F8F9FA; /* Very light gray with minimal blue undertone */
@@ -58,6 +59,11 @@
   --section-padding-sm: var(--sp-md);
   --section-padding-md: var(--sp-xl);
   --section-padding-lg: var(--sp-xxl);
+  
+  /* Layout e tipografia fluida */
+  --max-width: 1100px;
+  --gap: 1rem;
+  /* remove duplicate --primary-light override */
 }
 
 /* Reset */
@@ -69,6 +75,7 @@
 
 html {
   scroll-behavior: smooth;
+  font-size: 16px;
 }
 
 body {
@@ -210,25 +217,115 @@ body.dark-theme {
   background-color: rgba(18, 18, 18, 0.97);
 }
 
-/* Medias */
-@media (max-width: 480px) {
-  section,
-  footer {
-    padding-top: var(--sp-md);
-    padding-bottom: var(--sp-md);
+/* Layout e tipografia fluida */
+:root{
+  --max-width: 1100px;
+  --gap: 1rem;
+  --primary-light: #6ea8fe;
+}
+
+/* Fluid font sizing */
+html { font-size: 16px; }
+h1, h2, h3, h4 { line-height: 1.2; }
+h2 { font-size: clamp(1.4rem, 2.5vw, 2rem); }
+
+/* Container centralizado */
+.container { max-width: var(--max-width); margin: 0 auto; padding: 0 1rem; box-sizing: border-box; }
+
+/* Make images/GIFs responsive */
+img, .cat-gif, .project-image { max-width: 100%; height: auto; display: block; }
+
+/* Topbar responsive */
+.topbar { display:flex; align-items:center; justify-content:space-between; gap:var(--gap); padding:0.75rem 0; }
+#main-nav { display:flex; gap:1rem; align-items:center; }
+.menu-toggle { display:none; background:none; border:0; padding:0.5rem; cursor:pointer; }
+
+/* Cards grid responsive */
+.cards { display:grid; grid-template-columns: repeat(3, 1fr); gap:1rem; }
+.content-grid { display:grid; grid-template-columns: 1fr 1fr; gap:1rem; align-items:start; }
+
+/* CV download: center and style button */
+.cv-card { text-align: center; }
+.cv-link { display:inline-block; background: var(--accent); color: #fff; padding: 0.45rem 0.9rem; border-radius: 6px; box-shadow: 0 6px 18px rgba(13,71,161,0.12); transition: transform .18s ease, box-shadow .18s ease; }
+.cv-link:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(13,71,161,0.16); }
+
+/* Experience items style tweaks */
+.experience { padding: 0.85rem; border-radius: 8px; background: var(--background); box-shadow: var(--card-shadow); transition: transform .18s ease, box-shadow .18s ease; min-width: 220px; }
+.experience h4 { font-size: 1.05rem; margin-bottom: 0.35rem; }
+.experience p { font-size: 0.95rem; color: var(--medium-gray); margin: 0; }
+.experience small { display:block; margin-top: 0.35rem; color: var(--medium-gray); }
+.experience.exp-3 { border-left: 4px solid var(--accent); padding-left: 0.75rem; }
+/* Normalize card sizes for professional section */
+.content-grid .experience { display:flex; flex-direction:column; justify-content:space-between; height: 140px; }
+.content-grid .exp-descriptions { grid-column: span 2; }
+
+/* Contact area improvements */
+.social-links { display:flex; justify-content:center; margin-bottom: 1rem; }
+.linkedin-badge-container { display:flex; gap:0.75rem; align-items:center; justify-content:center; flex-wrap:wrap; max-width: 420px; margin: 1rem auto; }
+.linkedin-badge-container .linkedin-fallback { display:inline-flex; align-items:center; justify-content:center; padding: 0.5rem; border-radius: 6px; background: var(--light-gray); }
+
+/* Ensure Lattes icon is visible (not white) */
+.ai.ai-lattes { color: var(--accent-dark); }
+
+/* Center links row in contact section */
+.links { display:flex; justify-content:center; gap:0.6rem; align-items:center; flex-wrap:wrap; }
+
+/* Lattes icon sizing and theme-aware color */
+.lattes-icon { width: 20px; height: 20px; display: inline-block; vertical-align: middle; }
+/* If using an SVG image we keep its original colors; for forced color we could use filter on img */
+
+/* About section content enhancements */
+#about .animate__fadeInUp { max-width: 820px; margin: 0 auto; text-align: left; }
+#about .animate__fadeInUp p { margin-bottom: 0.75rem; }
+#about .animate__fadeInUp ul { margin-left: 1.1rem; }
+
+/* Ensure CTA inside about uses same cv-link style */
+#about .cv-link { margin-top: 0.5rem; }
+
+/* Contact section visual improvements */
+.links .card { background: var(--background); box-shadow: var(--card-shadow); padding: 0.6rem; border-radius: 6px; }
+.contact-info { text-align: center; color: var(--dark-gray); margin-top: 0.5rem; }
+.social-links { margin-bottom: 0.5rem; }
+
+/* Small card icons bigger touch area */
+.card-min { padding:0.75rem; min-width:44px; min-height:44px; display:inline-flex; align-items:center; justify-content:center; }
+
+/* Mobile breakpoints */
+@media (max-width: 992px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .content-grid { grid-template-columns: 1fr; }
+  #main-nav { gap:0.5rem; font-size:0.95rem; }
+}
+
+@media (max-width: 600px) {
+  .cards { grid-template-columns: 1fr; }
+  .topbar { flex-wrap:wrap; }
+  .logo-menu { display:none; }
+  .menu-toggle { display:block; }
+  #main-nav { 
+    position: absolute;
+    top: 64px;
+    right: 0;
+    left: 0;
+    background: var(--bg, #fff);
+    display: none;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 0.5rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+    z-index: 100;
   }
-  
-  section header {
-    margin-bottom: var(--sp-md);
-  }
-  
-  section header h2 {
-    font-size: 1.3rem;
-  }
-  
-  section header p {
-    font-size: 0.85rem;
-  }
+  #main-nav.show { display:flex; }
+  .projects { display:flex; flex-direction:column; gap:1rem; }
+  .card { padding:0.85rem; }
+  .cat-gif { max-width: 280px; margin: 0.5rem auto; }
+}
+
+/* Improve readability for small devices */
+@media (max-width: 420px) {
+  html { font-size: 14px; }
+  .menu-toggle { padding:0.6rem; }
+  .card-min { min-width:48px; min-height:48px; }
 }
 
 @media (min-width: 576px) {

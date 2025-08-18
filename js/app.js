@@ -8,10 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const topbar = document.getElementById('topbar');
   const nav = document.querySelector('#topbar nav');
   const logo = document.querySelector('#topbar .logo');
-  const logoButton = document.getElementById('logo-button');
-  const logoMenu = document.getElementById('logo-menu');
   const themeToggle = document.getElementById('theme-toggle');
-  const shareButton = document.getElementById('share-button');
   const menuToggle = document.getElementById('menu-toggle');
   const mainNav = document.getElementById('main-nav');
 
@@ -28,94 +25,6 @@ document.addEventListener('DOMContentLoaded', function() {
       topbar.classList.remove('shadow');
     }
   });
-  
-  // Logo Button Click Functionality
-  if (logoButton && logoMenu) {
-    logoButton.addEventListener('click', function() {
-      logoButton.classList.toggle('active');
-      logoMenu.classList.toggle('active');
-      
-      // Add rotation animation
-      logoButton.style.transition = 'all 0.3s ease';
-      if (logoButton.classList.contains('active')) {
-        logoButton.style.transform = 'scale(1.05)';
-      } else {
-        logoButton.style.transform = 'scale(1)';
-      }
-    });
-    
-    // Close menu when clicking outside
-    document.addEventListener('click', function(event) {
-      if (!logoButton.contains(event.target) && !logoMenu.contains(event.target)) {
-        logoButton.classList.remove('active');
-        logoMenu.classList.remove('active');
-        logoButton.style.transform = 'scale(1)';
-      }
-    });
-  }
-  
-  // Compartilhar Funcionalidade
-  if (shareButton) {
-    shareButton.addEventListener('click', function(e) {
-      e.preventDefault();
-      
-      // Verificar se a API Web Share está disponível
-      if (navigator.share) {
-        navigator.share({
-          title: 'Portfólio de Fábio Roberto Gurgel',
-          text: 'Confira o portfólio de Fábio Roberto',
-          url: window.location.href
-        })
-        .then(() => {
-          console.log('Compartilhado com sucesso!');
-        })
-        .catch(err => {
-          console.log('Erro ao compartilhar:', err);
-          copyToClipboard(window.location.href);
-        });
-      } else {
-        // Fallback para copiar para área de transferência
-        copyToClipboard(window.location.href);
-      }
-      
-      // Fechar menu
-      logoButton.classList.remove('active');
-      logoMenu.classList.remove('active');
-      logoButton.style.transform = 'scale(1)';
-    });
-  }
-  
-  function copyToClipboard(text) {
-    // Criar elemento temporário
-    const tempInput = document.createElement('input');
-    tempInput.value = text;
-    document.body.appendChild(tempInput);
-    tempInput.select();
-    document.execCommand('copy');
-    document.body.removeChild(tempInput);
-    
-    // Mostrar mensagem de feedback
-    const feedback = document.createElement('div');
-    feedback.textContent = getCurrentLanguage() === 'pt-BR' ? 'Link copiado!' : 'Link copied!';
-    feedback.style.position = 'fixed';
-    feedback.style.bottom = '20px';
-    feedback.style.left = '50%';
-    feedback.style.transform = 'translateX(-50%)';
-    feedback.style.padding = '10px 15px';
-    feedback.style.backgroundColor = 'var(--accent)';
-    feedback.style.color = 'white';
-    feedback.style.borderRadius = '4px';
-    feedback.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
-    feedback.style.zIndex = '9999';
-    document.body.appendChild(feedback);
-    
-    // Remover após 2 segundos
-    setTimeout(() => {
-      feedback.style.opacity = '0';
-      feedback.style.transition = 'opacity 0.5s ease';
-      setTimeout(() => document.body.removeChild(feedback), 500);
-    }, 2000);
-  }
   
   // Theme Toggle Functionality - Improved
   if (themeToggle) {
@@ -151,11 +60,6 @@ document.addEventListener('DOMContentLoaded', function() {
           document.body.classList.remove('theme-changing');
         }, 300);
       }, 50);
-      
-      // Close menu after selection
-      logoButton.classList.remove('active');
-      logoMenu.classList.remove('active');
-      logoButton.style.transform = 'scale(1)';
     });
   }
   
@@ -217,7 +121,11 @@ document.addEventListener('DOMContentLoaded', function() {
   if (contactEmailBtn) {
     contactEmailBtn.addEventListener('click', function(e) {
       e.preventDefault();
-      copyEmailToClipboard('fabio.filho25453@alunos.ufersa.edu.br');
+  // Prefer data-email or the visible contact email in the DOM
+  const emailFromData = contactEmailBtn.dataset.email;
+  const emailFromDom = document.getElementById('contact-email')?.textContent?.trim();
+  const emailToCopy = emailFromData || emailFromDom || 'contato.robertfabio@gmail.com';
+  copyEmailToClipboard(emailToCopy);
     });
   }
   
@@ -266,8 +174,16 @@ document.addEventListener('DOMContentLoaded', function() {
     notification.className = 'email-notification';
     
     // Use translations
-    const currentLang = getCurrentLanguage();
-    notification.textContent = translations[currentLang]['email-copied'];
+    let text = 'Email copiado!';
+    try {
+      const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'pt';
+      if (typeof translations !== 'undefined' && translations[currentLang] && translations[currentLang]['email-copied']) {
+        text = translations[currentLang]['email-copied'];
+      }
+    } catch (e) {
+      // keep default
+    }
+    notification.textContent = text;
     
     // Add to DOM
     document.body.appendChild(notification);
@@ -290,7 +206,8 @@ document.addEventListener('DOMContentLoaded', function() {
     function toggleMenu(open) {
       isMenuOpen = open;
       menuToggle.classList.toggle('active', open);
-      mainNav.classList.toggle('active', open);
+  mainNav.classList.toggle('active', open);
+  mainNav.classList.toggle('show', open);
       document.body.style.overflow = open ? 'hidden' : '';
       
       // Adiciona classe ao body para prevenir scroll
@@ -428,12 +345,42 @@ function createLanguageSelector() {
   
   // Add button to navigation
   nav.appendChild(langToggle);
-  
-
-
-
-
-
-
-  
 }
+
+// Mobile menu toggle
+(function(){
+  const btn = document.getElementById('menu-toggle');
+  const nav = document.getElementById('main-nav');
+  if(btn && nav){
+    btn.addEventListener('click', () => {
+      nav.classList.toggle('show');
+      btn.setAttribute('aria-expanded', nav.classList.contains('show') ? 'true' : 'false');
+    });
+    // Close nav on link click (mobile)
+    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('show')));
+  }
+})();
+
+// Copiar email com feedback simples
+(function(){
+  const copyBtn = document.getElementById('contact-email-btn');
+  if(copyBtn){
+    copyBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const email = copyBtn.dataset.email || document.getElementById('contact-email')?.textContent;
+      if(!email) return;
+      navigator.clipboard?.writeText(email).then(() => {
+        // pequeno feedback visual
+        const originalTitle = copyBtn.title;
+        copyBtn.title = 'Email copiado!';
+        copyBtn.classList.add('copied');
+        setTimeout(() => {
+          copyBtn.title = originalTitle;
+          copyBtn.classList.remove('copied');
+        }, 1800);
+      }).catch(() => {
+        alert('Não foi possível copiar o e‑mail automaticamente. Selecione e copie manualmente.');
+      });
+    });
+  }
+})();

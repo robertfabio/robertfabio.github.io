@@ -3,10 +3,8 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="theme-color" content="#0d6efd" />
     <!-- <meta http-equiv="refresh" content="3" /> -->
 
     <!-- Personal CSS -->
@@ -19,6 +17,9 @@
       integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
       crossorigin="anonymous"
     />
+
+    <!-- Academicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.2/css/academicons.min.css" integrity="sha512-bU4R5UoEBv4o/iVw5U+K2k/CgD029sF307h/C+AonD3LpCHkLXiJtTfL2OKw6aEaYI9cI9xI0hG2i+3p1/f6fQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Material Icons -->
     <link
@@ -41,37 +42,31 @@
       <div class="topbar container">
         <!-- Esquerda: Logo -->
         <div class="logo-container">
-          <div class="logo noselect" id="logo-button">
+          <div class="logo noselect" id="logo-button" aria-label="Home" onclick="location.href='#'">
             <span>FR</span>
-          </div>
-          <div class="logo-menu" id="logo-menu">
-            <a href="#" class="logo-menu-item" id="theme-toggle">
-              <i class="fas fa-moon"></i> <span data-i18n="logo-theme">Tema</span>
-            </a>
-            <a href="#banner" class="logo-menu-item">
-              <i class="fas fa-home"></i> <span data-i18n="logo-home">Início</span>
-            </a>
-            <a href="#" class="logo-menu-item" id="share-button">
-              <i class="fas fa-share-alt"></i> <span data-i18n="logo-share">Compartilhar</span>
-            </a>
           </div>
         </div>
 
         <!-- Centro: Navbar -->
-        <nav id="main-nav">
-          <a href="#education" data-i18n="nav-education">Educação</a>
+        <nav id="main-nav" aria-label="Navegação principal">
+          <a href="#about" data-i18n="nav-about">Sobre</a>
           <a href="#experience" data-i18n="nav-experience">Experiência</a>
           <a href="#projects" data-i18n="nav-projects">Projetos</a>
           <a href="#contact" data-i18n="nav-contact">Contato</a>
         </nav>
 
-        <!-- Direita: Seletor de linguagem -->
-        <div id="language-toggle" class="language-selector" title="PT → English / EN → Português">
-          <span>PT</span>
+        <!-- Direita: Controles -->
+        <div class="controls">
+            <a href="#" class="theme-toggle" id="theme-toggle" aria-label="Alternar tema">
+                <i class="fas fa-moon"></i>
+            </a>
+            <div id="language-toggle" class="language-selector" title="PT → English / EN → Português">
+              <span>PT</span>
+            </div>
         </div>
 
         <!-- Botão menu mobile -->
-        <button class="menu-toggle" id="menu-toggle" title="Menu de navegação">
+        <button class="menu-toggle" id="menu-toggle" title="Menu de navegação" aria-label="Abrir menu">
           <span></span>
           <span></span>
           <span></span>
@@ -92,7 +87,7 @@
         <div class="cards animate__animated animate__fadeInUp animate__delay-1s">
           <div class="card">
             <h4><i class="fas fa-envelope"></i> Email</h4>
-            <p>fabio.filho25453@alunos.ufersa.edu.br</p>
+            <p><a href="mailto:contato.robertfabio@gmail.com">contato.robertfabio@gmail.com</a></p>
           </div>
 
           <div class="card">
@@ -102,11 +97,29 @@
 
           <div class="card">
             <h4><i class="fas fa-map-marker-alt"></i> <span data-i18n="banner-location">Localização</span></h4>
-            <p>Brazil</p>
+            <p><a href="https://www.google.com/maps/place/Mossor%C3%B3,+RN,+Brazil" target="_blank" rel="noopener">Mossoró, RN</a></p>
           </div>
+
+          <!-- CV card removed from banner to keep header clean -->
         </div>
       </div>
     </section>
+
+    <!-- About Me -->
+  <section id="about" class="container">
+    <header>
+      <h2 data-i18n="about-title">Sobre mim</h2>
+      <p data-i18n="about-subtitle">Quem sou eu</p>
+    </header>
+    <div class="animate__animated animate__fadeInUp animate__delay-1s">
+      <p data-i18n="about-bio"></p>
+      <p data-i18n="about-bio-2"></p>
+      <h4 data-i18n="about-skills-title"></h4>
+      <div data-i18n="about-skills-list"></div>
+  <p data-i18n="about-volunteer"></p>
+  <p class="cv-card" data-i18n="about-cta"></p>
+    </div>
+  </section>
 
     <!-- Education -->
     <section id="education" class="alternative">
@@ -120,7 +133,7 @@
           <div class="card">
             <h4 data-i18n="education-bsc-cs">Bacharelado em Ciência da Computação</h4>
             <p data-i18n="education-ufersa">Universidade Federal Rural do Semi-Árido (UFERSA)</p>
-            <p>2025 - 2029 (2º <span data-i18n="education-semester">semestre</span>)</p>
+            <p>2025 - 2028 (3º <span data-i18n="education-semester">semestre</span>)</p>
           </div>
 
           <div class="card">
@@ -140,17 +153,24 @@
           <p data-i18n="experience-subtitle">Minha jornada até agora</p>
         </header>
 
-        <div class="content-grid animate__animated animate__fadeInUp animate__delay-1s">
-          <div class="experience exp-1 active" data-target="#desc-exp-1">
-            <h4><i class="fas fa-paint-brush"></i> <span data-i18n="experience-graphic-designer">Designer Gráfico</span></h4>
-            <p data-i18n="experience-local-print">Gráfica Local</p>
-            <small>2024 (3 <span data-i18n="experience-months">meses</span>)</small>
+          <div class="content-grid animate__animated animate__fadeInUp animate__delay-1s">
+          <!-- Reorder: Presidente first, then Coordenador, then Designer -->
+          <div class="experience exp-3" data-target="#desc-exp-3">
+            <h4><i class="fas fa-sitemap"></i> <span data-i18n="experience-president">Presidente</span></h4>
+            <p data-i18n="experience-cacc-center">Centro Acadêmico de Ciência da Computação (UFERSA)</p>
+            <small>2025 - Atualmente</small>
           </div>
 
           <div class="experience exp-2" data-target="#desc-exp-2">
             <h4><i class="fas fa-users"></i> <span data-i18n="experience-coordinator">Coordenador Geral & Secretário</span></h4>
             <p data-i18n="experience-admin-center">Centro Acadêmico de Administração (UFERSA)</p>
             <small>2024 - 2025</small>
+          </div>
+
+          <div class="experience exp-1 active" data-target="#desc-exp-1">
+            <h4><i class="fas fa-paint-brush"></i> <span data-i18n="experience-graphic-designer">Designer Gráfico</span></h4>
+            <p data-i18n="experience-local-print">Gráfica Local</p>
+            <small>2024 (3 <span data-i18n="experience-months">meses</span>)</small>
           </div>
 
           <div class="exp-descriptions">
@@ -171,6 +191,16 @@
                 <li data-i18n="experience-organized-events">Organização de eventos acadêmicos, melhorando o engajamento dos estudantes</li>
                 <li data-i18n="experience-streamlined-processes">Otimização de processos de documentação</li>
                 <li data-i18n="experience-coordinated-activities">Coordenação de atividades administrativas</li>
+              </ul>
+            </div>
+
+            <div id="desc-exp-3" class="exp-description">
+              <h2 data-i18n="experience-volunteer-president">Trabalho Voluntário</h2>
+              <p>2025 - Atualmente</p>
+              <ul>
+                <li data-i18n="experience-led-initiatives">Liderança de iniciativas para promover a integração e o desenvolvimento dos estudantes de Ciência da Computação.</li>
+                <li data-i18n="experience-represented-students">Representação dos interesses dos estudantes junto à coordenação do curso e à universidade.</li>
+                <li data-i18n="experience-managed-social-media">Gestão da comunicação e redes sociais, incluindo o Instagram <a href="https://www.instagram.com/cacc.ufersa" target="_blank" rel="noopener">@cacc.ufersa</a>.</li>
               </ul>
             </div>
           </div>
@@ -198,7 +228,7 @@
                 CACC-UFERSA <i class="fas fa-external-link-alt"></i>
               </a>
               <small class="text-muted" data-i18n="projects-cacc">
-                Site do Centro Acadêmico de Ciência da Computação - Desenvolvido com React, Node.js e Tailwind CSS
+                MVP do Centro Acadêmico de Ciência da Computação - Desenvolvido com React e Node.js
               </small>
             </div>
 
@@ -207,7 +237,23 @@
                 Presente Virtual <i class="fas fa-external-link-alt"></i>
               </a>
               <small class="text-muted" data-i18n="projects-portfolio">
-                Um presente em forma de buquê 3D virtual, desenvolvido em JavaScript puro
+                Um presente em forma de buquê 3D virtual, desenvolvido em JavaScript
+              </small>
+            </div>
+          </div>
+
+          <div class="softwares">
+            <h4><i class="fas fa-mobile-alt"></i> <span data-i18n="projects-mobile-dev">Desenvolvimento Mobile</span></h4>
+            <p style="font-size: small" class="pb-3" data-i18n="projects-mobile-highlight">
+              Atualmente estudando e desenvolvendo projetos mobile.
+            </p>
+
+            <div class="project-item">
+              <a href="#" rel="noopener">
+                Em breve <i class="fas fa-external-link-alt"></i>
+              </a>
+              <small class="text-muted" data-i18n="projects-soon">
+                Novos projetos de desenvolvimento mobile serão adicionados aqui.
               </small>
             </div>
           </div>
@@ -239,7 +285,7 @@
                 <i class="fas fa-language"></i> <span data-i18n="projects-languages">Idiomas</span>
               </a>
               <small class="text-muted" data-i18n="projects-languages-info">
-                Português (Nativo), Inglês (Avançado)
+                Português (Nativo), Inglês (Intermediário)
               </small>
             </div>
 
@@ -254,7 +300,7 @@
           </div>
         </div>
 
-        <small class="note mt-3"><i class="fas fa-rocket"> </i> <span data-i18n="projects-mockup">Mockup</span></small>
+        <small class="note mt-3"><i class="fas fa-rocket"> </i>
       </div>
     </section>
 
@@ -264,17 +310,31 @@
             <h2 data-i18n="contact-title">Contato</h2>
             <p data-i18n="contact-subtitle">Conecte-se comigo nas redes sociais</p>
             
-            <div class="social-links">
-                <!-- ... seus outros links sociais ... -->
-            </div>
+      <div class="social-links">
+                <!-- LinkedIn badge (light/dark) -->
+                <div class="linkedin-badge-container">
+                  <!-- Light theme badge -->
+                  <div class="light-theme-badge">
+                    <div class="badge-base LI-profile-badge" data-locale="pt_BR" data-size="medium" data-theme="light" data-type="HORIZONTAL" data-vanity="fábioroberto" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bioroberto?trk=profile-badge">Fábio Roberto</a></div>
+                  </div>
+
+                  <!-- Dark theme fallback badge: show only in dark mode if needed -->
+                  <div class="dark-theme-badge">
+                    <div class="badge-base LI-profile-badge" data-locale="pt_BR" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="fábioroberto" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bioroberto?trk=profile-badge">Fábio Roberto</a></div>
+                  </div>
+
+                  <!-- Fallback simple card for older browsers / accessibility -->
+                  <a class="card card-min linkedin-fallback" href="https://www.linkedin.com/in/fabioroberto" target="_blank" rel="noopener" title="LinkedIn">
+                    <i class="fab fa-linkedin-in fa-lg" aria-hidden="true"></i>
+                    <span class="sr-only">LinkedIn</span>
+                  </a>
+                </div>
+      </div>
     
             <img class="cat-gif" src="img/cat.gif" alt="One Cat">
 
-            <!-- Adicione este container para o badge -->
-            <div class="linkedin-badge-container">
-                <div class="badge-base LI-profile-badge light-theme-badge" data-locale="pt_BR" data-size="large" data-theme="light" data-type="VERTICAL" data-vanity="fábio-gurgel" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bioroberto?trk=profile-badge">Fábio Roberto</a></div>
-                <div class="badge-base LI-profile-badge dark-theme-badge" data-locale="pt_BR" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="fábio-gurgel" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bioroberto?trk=profile-badge">Fábio Roberto</a></div>
-            </div>
+            <p class="contact-info" data-i18n="contact-email">Email Educacional: <span id="contact-email">fabio.filho25453@alunos.ufersa.edu.br</span></p>
+            <p class="contact-info" data-i18n="contact-phone">Telefone: <span id="contact-phone">+55 84 99215-2351</span></p>
             
             <div class="links animate__animated animate__fadeInUp animate__delay-1s">
                 <a
@@ -287,15 +347,7 @@
                     <i class="fab fa-github fa-lg"></i>
                 </a>
     
-                <a
-                    class="card card-min"
-                    href="www.linkedin.com/in/fábioroberto"
-                    target="_blank"
-                    rel="noopener"
-                    title="LinkedIn"
-                >
-                    <i class="fab fa-linkedin-in fa-lg"></i>
-                </a>
+  <!-- LinkedIn handled above via badge and fallback -->
     
                 <a
                     class="card card-min"
@@ -306,12 +358,30 @@
                 >
                     <i class="fas fa-file-pdf fa-lg"></i>
                 </a>
+
+                <a
+                    class="card card-min"
+                    href="https://lattes.cnpq.br/2818508321705130"
+                    target="_blank"
+                    rel="noopener"
+                    title="Currículo Lattes"
+                >
+                    <picture>
+                      <!-- Prefer PNG if present (higher-fidelity from user) -->
+                      <source srcset="img/lattes.png" type="image/png">
+                      <!-- Fallback to SVG included in repo -->
+                      <img src="img/lattes.svg" alt="Lattes" class="lattes-icon" />
+                    </picture>
+                    <span class="sr-only">Lattes</span>
+                </a>
                 
                 <a
                     class="card card-min"
                     href="#"
                     id="contact-email-btn"
-                    title="Copiar email: fabio.filho25453@alunos.ufersa.edu.br"
+                    title="Copiar email: contato.robertfabio@gmail.com"
+                    aria-label="Copiar e-mail"
+                    data-email="contato.robertfabio@gmail.com"
                 >
                     <i class="fas fa-envelope fa-lg"></i>
                 </a>
@@ -320,8 +390,14 @@
     </section>
 
     <footer class="container" style="font-size: small; padding-top: 0;">
-      <div class="animate__animated animate__fadeIn animate__delay-1s" style="display: flex; justify-content: center; align-items: center; gap: 5px; color: var(--primary-light);">
-        <span data-i18n="footer-designed">Designed with passion by Fábio R.D.G.F.</span> © 2025
+      <div class="animate__animated animate__fadeIn animate__delay-1s" style="display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--primary-light);">
+        <div>
+          <span data-i18n="footer-designed">Designed with passion by Fábio R.D.G.F.</span> © 2025
+        </div>
+        <div style="font-size: 0.9em; color: var(--muted);">
+          <div>Email Educacional: <a href="mailto:fabio.filho25453@alunos.ufersa.edu.br">fabio.filho25453@alunos.ufersa.edu.br</a></div>
+          <div>Telefone: <a href="tel:+5584992152351">+55 84 99215-2351</a></div>
+        </div>
       </div>
     </footer>
 

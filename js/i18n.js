@@ -6,6 +6,15 @@
 // Objeto com as traduções em português e inglês
 const translations = {
   'pt-BR': {
+  // About
+  'about-title': 'Sobre mim',
+  'about-subtitle': 'Quem sou eu',
+  'about-bio': 'Sou estudante de Ciência da Computação e Administração na UFERSA, desenvolvedor web e entusiasta por tecnologias móveis. Gosto de construir soluções úteis, participar de projetos estudantis e liderar iniciativas acadêmicas.',
+  'about-bio-2': 'Atualmente estudo desenvolvimento mobile (React Native / Flutter) e acompanho boas práticas de acessibilidade e performance. Busco oportunidades para aplicar conhecimentos em projetos reais e colaborar com times multidisciplinares.',
+  'about-skills-title': 'Principais competências',
+  'about-skills-list': '<ul><li>Desenvolvimento Web (HTML, CSS, JavaScript, React)</li><li>Desenvolvimento Mobile (React Native, Flutter - em estudo)</li><li>Design Visual e prototipagem</li><li>Gestão de projetos estudantis e liderança</li></ul>',
+  'about-cta': '<a class="cv-link" href="./files/cv.pdf" target="_blank" rel="noopener">Baixar CV</a>',
+  'about-volunteer': 'Trabalho voluntário: Presidente do Centro Acadêmico de Ciência da Computação (CACC-UFERSA) — @cacc.ufersa',
     // Topbar
     'nav-experience': 'Experiência',
     'nav-education': 'Educação',
@@ -56,8 +65,8 @@ const translations = {
     'projects-subtitle': 'Trabalhos e experiências profissionais',
     'projects-web-dev': 'Desenvolvimento Web',
     'projects-dev-highlight': 'Projetos de desenvolvimento em destaque',
-    'projects-cacc': 'Site do Centro Acadêmico de Ciência da Computação - Desenvolvido com React, Node.js e Tailwind CSS',
-    'projects-portfolio': 'Um presente em forma de buquê 3D virtual, desenvolvido em JavaScript puro',
+    'projects-cacc': 'Protótipo do site do Centro Acadêmico de Ciência da Computação - Desenvolvido com React e Node.js',
+    'projects-portfolio': 'Um presente em forma de buquê 3D virtual, desenvolvido em JavaScript',
     'projects-skills': 'Competências',
     'projects-expertise': 'Expertise técnica e profissional',
     'projects-graphic-design': 'Design Gráfico',
@@ -83,6 +92,15 @@ const translations = {
     'footer-designed': 'Desenvolvido com paixão por Fábio ',
   },
   'en-US': {
+  // About
+  'about-title': 'About me',
+  'about-subtitle': 'Who I am',
+  'about-bio': 'I am a Computer Science and Business Administration student at UFERSA, a web developer and mobile technologies enthusiast. I enjoy building useful solutions, participating in student projects and leading academic initiatives.',
+  'about-bio-2': 'Currently studying mobile development (React Native / Flutter) and following accessibility and performance best practices. I look for opportunities to apply my skills in real projects and collaborate with multidisciplinary teams.',
+  'about-skills-title': 'Core skills',
+  'about-skills-list': '<ul><li>Web Development (HTML, CSS, JavaScript, React)</li><li>Mobile Development (React Native, Flutter - learning)</li><li>Visual Design & Prototyping</li><li>Student project management and leadership</li></ul>',
+  'about-cta': '<a class="cv-link" href="./files/cv.pdf" target="_blank" rel="noopener">Download CV</a>',
+  'about-volunteer': 'Volunteer work: President of the Computer Science Academic Center (CACC-UFERSA) — @cacc.ufersa',
     // Topbar
     'nav-experience': 'Experience',
     'nav-education': 'Education',
@@ -133,8 +151,8 @@ const translations = {
     'projects-subtitle': 'Works and professional experiences',
     'projects-web-dev': 'Web Development',
     'projects-dev-highlight': 'Featured development projects',
-    'projects-cacc': 'Computer Science Academic Center Website - Developed with React, Node.js and Tailwind CSS',
-    'projects-portfolio': 'A virtual 3D bouquet gift, developed in pure JavaScript',
+    'projects-cacc': 'Computer Science Academic Center Website - Developed with React, Node.js',
+    'projects-portfolio': 'A virtual 3D bouquet gift, developed in JavaScript',
     'projects-skills': 'Skills',
     'projects-expertise': 'Technical and professional expertise',
     'projects-graphic-design': 'Graphic Design',
@@ -142,7 +160,7 @@ const translations = {
     'projects-academic': 'Academic Background',
     'projects-academic-info': 'Computer Science and Business Administration (UFERSA)',
     'projects-languages': 'Languages',
-    'projects-languages-info': 'Portuguese (Native), English (Advanced)',
+    'projects-languages-info': 'Portuguese (Native), English (Interme)',
     'projects-interpersonal': 'Interpersonal Skills',
     'projects-interpersonal-info': 'Project Management, Client Communication, Team Coordination',
     'projects-mockup': 'Mockup',
