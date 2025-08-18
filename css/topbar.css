@@ -27,18 +27,16 @@
 
 /* Logo styles */
 #topbar .logo {
-  height: 40px;
-  padding: 0.25em 0.65em;
+  height: 35px;
+  padding: 0.25em 0.5em;
   color: var(--primary);
   font-weight: 700;
-  letter-spacing: 0.4px;
+  letter-spacing: 1px;
   background-color: transparent;
   border-left: 3px solid var(--accent);
   display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  border-radius: 6px;
+  justify-content: baseline;
   transition: all var(--transition-normal);
   position: relative;
   z-index: 100;
@@ -50,12 +48,12 @@
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 26px;
-  height: 18px;
+  width: 20px;
+  height: 14px;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px;
+  padding: 0;
   z-index: 11;
 }
 
@@ -63,7 +61,7 @@
   display: block;
   width: 100%;
   height: 3px;
-  background-color: var(--primary);
+  background-color: var(--text-color);
   border-radius: 3px;
   transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
 }
@@ -106,13 +104,15 @@
 
 /* Mobile Styles */
 @media (max-width: 480px) {
+  /* Reserve space for the fixed topbar to avoid content jump/overlap */
   body {
-    padding-top: 60px;
+    padding-top: 64px; /* match topbar height + small gap */
   }
   
   #topbar {
     position: fixed;
     top: 0;
+    z-index: 1100; /* ensure header sits above other elements */
   }
 
   .topbar {
@@ -125,9 +125,9 @@
   }
 
   .menu-toggle {
-    display: flex;
+  display: flex;
     position: relative;
-    z-index: 1002; /* Maior que o z-index do menu para ficar sempre visível */
+  z-index: 1250; /* Maior que o z-index do menu para ficar sempre visível */
     background: transparent;
     border: none;
     outline: none;
@@ -153,25 +153,30 @@
     transform: translateY(-9px) rotate(-45deg);
   }
 
+  /* Mobile nav slides in from the right using transform (more reliable than 'right') */
   #main-nav {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: 0;
+    transform: translateX(100%); /* hidden by default */
     width: 80%;
-    max-width: 300px;
+    max-width: 320px;
     height: 100vh;
     background-color: var(--background);
-    padding: 80px 2rem 2rem;
-    transition: all 0.3s ease-in-out;
-    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
-    z-index: 1001;
+    padding: 80px 1.5rem 2rem;
+    transition: transform 0.28s cubic-bezier(.2,.9,.2,1);
+    box-shadow: -6px 0 20px rgba(0, 0, 0, 0.12);
+    z-index: 1200; /* above topbar to ensure the slide-in menu overlays correctly */
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 1.25rem;
+    will-change: transform;
   }
 
-  #main-nav.active {
-    right: 0;
+  /* When active, slide into view */
+  #main-nav.active,
+  #main-nav.show {
+    transform: translateX(0);
   }
 
   #main-nav a {
@@ -391,8 +396,13 @@ body.dark-theme footer {
 }
 
 #topbar.sticky {
-  position: sticky;
+  /* Keep the topbar fixed to the viewport to avoid layout glitches on mobile
+     (the element is created with class="sticky" in the markup). */
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1300;
   box-shadow: 0 5px 15px rgba(30, 41, 59, 0.08);
 }
 
@@ -425,18 +435,11 @@ body.dark-theme footer {
 
 .theme-toggle {
   color: var(--primary);
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: color 0.2s ease, transform 0.15s ease;
-  background: transparent;
-  border: 0;
-  padding: 8px;
-  border-radius: 8px;
+  transition: color 0.3s ease;
 }
 
-.theme-toggle:hover,
-.theme-toggle:focus {
+.theme-toggle:hover {
   color: var(--accent);
-  transform: translateY(-1px);
-  outline: none;
 }

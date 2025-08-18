@@ -12,6 +12,27 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.getElementById('menu-toggle');
   const mainNav = document.getElementById('main-nav');
 
+  // Cleanup any leftover state (in case menu was left open or user did undo)
+  (function cleanupMenuState(){
+    try {
+      if (mainNav) {
+        mainNav.classList.remove('active','show');
+        // ensure off-screen for safety
+        mainNav.style.right = '';
+      }
+      if (menuToggle) {
+        menuToggle.classList.remove('active');
+        menuToggle.setAttribute('aria-expanded', 'false');
+      }
+      document.body.classList.remove('menu-open');
+      document.body.style.overflow = '';
+      const existingOverlay = document.getElementById('mobile-menu-overlay');
+      if (existingOverlay && existingOverlay.parentNode) existingOverlay.parentNode.removeChild(existingOverlay);
+    } catch (err) {
+      console.error('cleanupMenuState error', err);
+    }
+  })();
+
   // Add shine effect to logo
   if (logo) {
     logo.classList.add('shine-effect');
@@ -121,11 +142,7 @@ document.addEventListener('DOMContentLoaded', function() {
   if (contactEmailBtn) {
     contactEmailBtn.addEventListener('click', function(e) {
       e.preventDefault();
-  // Prefer data-email or the visible contact email in the DOM
-  const emailFromData = contactEmailBtn.dataset.email;
-  const emailFromDom = document.getElementById('contact-email')?.textContent?.trim();
-  const emailToCopy = emailFromData || emailFromDom || 'contato.robertfabio@gmail.com';
-  copyEmailToClipboard(emailToCopy);
+      copyEmailToClipboard('contato.robertfabio@gmail.com');
     });
   }
   
@@ -174,16 +191,8 @@ document.addEventListener('DOMContentLoaded', function() {
     notification.className = 'email-notification';
     
     // Use translations
-    let text = 'Email copiado!';
-    try {
-      const currentLang = typeof getCurrentLanguage === 'function' ? getCurrentLanguage() : 'pt';
-      if (typeof translations !== 'undefined' && translations[currentLang] && translations[currentLang]['email-copied']) {
-        text = translations[currentLang]['email-copied'];
-      }
-    } catch (e) {
-      // keep default
-    }
-    notification.textContent = text;
+    const currentLang = getCurrentLanguage();
+    notification.textContent = translations[currentLang]['email-copied'];
     
     // Add to DOM
     document.body.appendChild(notification);
@@ -207,7 +216,10 @@ document.addEventListener('DOMContentLoaded', function() {
       isMenuOpen = open;
       menuToggle.classList.toggle('active', open);
   mainNav.classList.toggle('active', open);
+  // Keep compatibility with older code/CSS that expects 'show'
   mainNav.classList.toggle('show', open);
+  // Update aria for accessibility
+  menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
       document.body.style.overflow = open ? 'hidden' : '';
       
       // Adiciona classe ao body para prevenir scroll
@@ -215,6 +227,49 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // Adiciona uma transição suave para o botão do menu
       menuToggle.style.transition = 'all 0.3s ease';
+      
+        // Overlay: cria uma camada clicável que fecha o menu quando o usuário toca fora
+        try {
+          let overlay = document.getElementById('mobile-menu-overlay');
+          if (open) {
+            if (!overlay) {
+              overlay = document.createElement('div');
+              overlay.id = 'mobile-menu-overlay';
+              overlay.style.position = 'fixed';
+              overlay.style.top = '0';
+              overlay.style.left = '0';
+              overlay.style.width = '100%';
+              overlay.style.height = '100%';
+              overlay.style.background = 'rgba(0,0,0,0.35)';
+              overlay.style.opacity = '0';
+              overlay.style.transition = 'opacity 0.25s ease';
+              overlay.style.zIndex = '1150'; // abaixo do mainNav (1200)
+              overlay.addEventListener('click', function() { toggleMenu(false); });
+              document.body.appendChild(overlay);
+              // trigger fade in
+              requestAnimationFrame(() => { overlay.style.opacity = '1'; });
+            } else {
+              overlay.style.display = 'block';
+              requestAnimationFrame(() => { overlay.style.opacity = '1'; });
+            }
+          } else {
+            if (overlay) {
+              overlay.style.opacity = '0';
+              setTimeout(() => { if (overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 260);
+            }
+            // Ensure classes removed in case CSS state mismatched
+            try {
+              mainNav.classList.remove('active','show');
+              menuToggle.classList.remove('active');
+              menuToggle.setAttribute('aria-expanded', 'false');
+              document.body.classList.remove('menu-open');
+              document.body.style.overflow = '';
+            } catch (err) { /* ignore */ }
+          }
+        } catch (err) {
+          // se algo falhar, não bloqueia o menu; logging mínimo
+          console.error('Menu overlay error', err);
+        }
     }
 
     menuToggle.addEventListener('click', function(event) {
@@ -346,20 +401,7 @@ function createLanguageSelector() {
   // Add button to navigation
   nav.appendChild(langToggle);
 }
-
-// Mobile menu toggle
-(function(){
-  const btn = document.getElementById('menu-toggle');
-  const nav = document.getElementById('main-nav');
-  if(btn && nav){
-    btn.addEventListener('click', () => {
-      nav.classList.toggle('show');
-      btn.setAttribute('aria-expanded', nav.classList.contains('show') ? 'true' : 'false');
-    });
-    // Close nav on link click (mobile)
-    nav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => nav.classList.remove('show')));
-  }
-})();
+// ...existing code continues
 
 // Copiar email com feedback simples
 (function(){

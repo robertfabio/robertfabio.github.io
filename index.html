@@ -48,6 +48,7 @@
         </div>
 
         <!-- Centro: Navbar -->
+        <!-- Centro: Navbar (moved out for better mobile behavior) -->
         <nav id="main-nav" aria-label="Navegação principal">
           <a href="#about" data-i18n="nav-about">Sobre</a>
           <a href="#experience" data-i18n="nav-experience">Experiência</a>
@@ -100,7 +101,6 @@
             <p><a href="https://www.google.com/maps/place/Mossor%C3%B3,+RN,+Brazil" target="_blank" rel="noopener">Mossoró, RN</a></p>
           </div>
 
-          <!-- CV card removed from banner to keep header clean -->
         </div>
       </div>
     </section>
@@ -116,8 +116,8 @@
       <p data-i18n="about-bio-2"></p>
       <h4 data-i18n="about-skills-title"></h4>
       <div data-i18n="about-skills-list"></div>
-  <p data-i18n="about-volunteer"></p>
-  <p class="cv-card" data-i18n="about-cta"></p>
+      <p data-i18n="about-volunteer"></p>
+      <div data-i18n="about-cta"></div>
     </div>
   </section>
 
@@ -310,7 +310,7 @@
             <h2 data-i18n="contact-title">Contato</h2>
             <p data-i18n="contact-subtitle">Conecte-se comigo nas redes sociais</p>
             
-      <div class="social-links">
+            <div class="social-links">
                 <!-- LinkedIn badge (light/dark) -->
                 <div class="linkedin-badge-container">
                   <!-- Light theme badge -->
@@ -323,18 +323,10 @@
                     <div class="badge-base LI-profile-badge" data-locale="pt_BR" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="fábioroberto" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bioroberto?trk=profile-badge">Fábio Roberto</a></div>
                   </div>
 
-                  <!-- Fallback simple card for older browsers / accessibility -->
-                  <a class="card card-min linkedin-fallback" href="https://www.linkedin.com/in/fabioroberto" target="_blank" rel="noopener" title="LinkedIn">
-                    <i class="fab fa-linkedin-in fa-lg" aria-hidden="true"></i>
-                    <span class="sr-only">LinkedIn</span>
-                  </a>
                 </div>
-      </div>
+            </div>
     
             <img class="cat-gif" src="img/cat.gif" alt="One Cat">
-
-            <p class="contact-info" data-i18n="contact-email">Email Educacional: <span id="contact-email">fabio.filho25453@alunos.ufersa.edu.br</span></p>
-            <p class="contact-info" data-i18n="contact-phone">Telefone: <span id="contact-phone">+55 84 99215-2351</span></p>
             
             <div class="links animate__animated animate__fadeInUp animate__delay-1s">
                 <a
@@ -347,7 +339,15 @@
                     <i class="fab fa-github fa-lg"></i>
                 </a>
     
-  <!-- LinkedIn handled above via badge and fallback -->
+                <a
+                    class="card card-min"
+                    href="https://www.linkedin.com/in/fabioroberto"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="LinkedIn"
+                >
+                    <i class="fab fa-linkedin-in fa-lg"></i>
+                </a>
     
                 <a
                     class="card card-min"
@@ -390,14 +390,8 @@
     </section>
 
     <footer class="container" style="font-size: small; padding-top: 0;">
-      <div class="animate__animated animate__fadeIn animate__delay-1s" style="display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--primary-light);">
-        <div>
-          <span data-i18n="footer-designed">Designed with passion by Fábio R.D.G.F.</span> © 2025
-        </div>
-        <div style="font-size: 0.9em; color: var(--muted);">
-          <div>Email Educacional: <a href="mailto:fabio.filho25453@alunos.ufersa.edu.br">fabio.filho25453@alunos.ufersa.edu.br</a></div>
-          <div>Telefone: <a href="tel:+5584992152351">+55 84 99215-2351</a></div>
-        </div>
+      <div class="animate__animated animate__fadeIn animate__delay-1s" style="display: flex; justify-content: center; align-items: center; gap: 5px; color: var(--primary-light);">
+        <span data-i18n="footer-designed">Designed with passion by Fábio R.D.G.F.</span> © 2025
       </div>
     </footer>
 
