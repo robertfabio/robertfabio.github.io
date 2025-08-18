@@ -10,9 +10,9 @@
   padding: 0;
   border-radius: 50%;
   transition: all var(--transition-normal);
-  background: white;
+  background: var(--background);
   border-left: none;
-  box-shadow: var(--card-shadow) 0px 8px 24px;
+  box-shadow: 0px 8px 24px var(--card-shadow);
   border: 1px solid rgba(10, 15, 20, 0.03);
   overflow: hidden;
 }
@@ -25,8 +25,8 @@
 .card-min:hover {
   transform: translateY(-5px) scale(1.05);
   border-left: none;
-  box-shadow: var(--card-shadow-hover) 0px 10px 25px;
-  background: white;
+  box-shadow: 0px 10px 25px var(--card-shadow-hover);
+  background: var(--background);
 }
 
 .card-min::before,

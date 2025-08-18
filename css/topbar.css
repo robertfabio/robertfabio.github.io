@@ -10,8 +10,14 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid rgba(30, 41, 59, 0.08);
-  z-index: 1000;
-  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  z-index: 9999; /* Aumentado para garantir que fique acima de tudo */
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, background-color, box-shadow;
+  transform: translateZ(0);
+  -webkit-font-smoothing: antialiased;
+  -webkit-transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
 }
 
 /* Topbar Container */
@@ -22,7 +28,14 @@
   height: 100%;
   padding: 0 1.5rem;
   margin: 0 auto;
-  max-width: 1200px;
+  max-width: var(--max-width);
+}
+
+/* Stronger rule to override general .topbar padding from main.css when inside #topbar */
+#topbar > .topbar {
+  height: 60px; /* enforce consistent height */
+  padding: 0 1.25rem; /* ensure horizontal spacing but no vertical padding */
+  align-items: center;
 }
 
 /* Logo styles */
@@ -105,6 +118,57 @@
   transition: width 0.3s ease;
 }
 
+/* Center navigation content on wider screens so links align with the .topbar container */
+@media (min-width: 769px) {
+  /* Keep #topbar fixed on larger screens and enforce consistent height */
+  #topbar { position: fixed; top: 0; left: 0; right: 0; height: 60px; }
+
+  /* Position the nav absolutely so it sits inside the topbar area and doesn't push content */
+  #main-nav {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: block;
+    background: transparent;
+    box-shadow: none;
+    padding: 0;
+    visibility: visible;
+    opacity: 1;
+    transform: none;
+    z-index: 9998; /* below topbar controls but above page content */
+    pointer-events: none; /* disable pointer on full-width container, enable on content */
+  }
+
+  /* nav-content centers the links and allows pointer events */
+  #main-nav .nav-content {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 1rem;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* center the links horizontally */
+    gap: 2.25rem;
+    pointer-events: auto; /* allow clicks on links */
+  }
+
+  #main-nav .nav-content a {
+    display: inline-block;
+    padding: 0.5rem 0.75rem;
+    position: relative;
+  }
+
+  /* Ensure nav links are vertically centered and have predictable height */
+  #main-nav .nav-content a {
+    height: 60px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
 #main-nav a:hover::after,
 #main-nav a:focus::after {
   width: 100%;
@@ -170,10 +234,11 @@
               background-color 0.3s ease;
 }
 
-/* Mobile Navigation */
-@media (max-width: 480px) {
+/* Mobile and Tablet Navigation */
+@media (max-width: 768px) {
   body {
     padding-top: 60px;
+    overflow-x: hidden;
   }
 
   .topbar {
@@ -182,10 +247,13 @@
 
   #topbar {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    touch-action: none;
   }
 
   .menu-toggle {
     display: flex;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* Menu Toggle Animation */
@@ -204,16 +272,17 @@
     background-color: var(--accent);
   }
 
-  /* Mobile Navigation */
+  /* Mobile Navigation - Enhanced */
   #main-nav {
     position: fixed;
     top: 0;
     right: -280px;
     height: 100vh;
     width: 280px;
+    max-width: 85vw;
     background-color: var(--background);
     padding-top: 60px;
-    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
                 visibility 0.3s ease-in-out,
                 opacity 0.3s ease-in-out;
     box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
@@ -221,23 +290,32 @@
     visibility: hidden;
     opacity: 0;
     overflow-y: auto;
+    overflow-x: hidden;
     display: flex;
     flex-direction: column;
     gap: 0;
+    -webkit-overflow-scrolling: touch;
+    transform: translateX(280px);
+    will-change: transform;
   }
 
   #main-nav.active {
-    right: 0;
+    transform: translateX(0);
     visibility: visible;
     opacity: 1;
   }
 
   #main-nav a {
-    display: block;
-    padding: 1rem;
+    display: flex;
+    align-items: center;
+    padding: 1rem 1.25rem;
     text-align: left;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
     font-size: 1.1rem;
+    transition: all 0.2s ease;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
   #main-nav a:last-child {
@@ -254,7 +332,7 @@
     display: none;
   }
 
-  /* Menu Overlay */
+  /* Menu Overlay - Enhanced */
   .menu-overlay {
     position: fixed;
     top: 0;
@@ -266,16 +344,28 @@
     -webkit-backdrop-filter: blur(2px);
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease,
-                visibility 0s linear 0.3s;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 998;
+    touch-action: none;
+    will-change: opacity;
+    cursor: pointer;
   }
 
   .menu-overlay.active {
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.3s ease,
-                visibility 0s linear;
+  }
+
+  /* Touch highlight prevention */
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Smooth scrolling for iOS */
+  @supports (-webkit-overflow-scrolling: touch) {
+    #main-nav {
+      -webkit-overflow-scrolling: touch;
+    }
   }
 
   body.menu-open {
@@ -283,13 +373,13 @@
   }
 }
 
-/* Dark theme adjustments */
+/* Dark theme adjustments - Enhanced */
 body.dark-theme #topbar {
   background-color: rgba(18, 18, 18, 0.98);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   body.dark-theme #topbar {
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   }
@@ -301,6 +391,16 @@ body.dark-theme #topbar {
 
   body.dark-theme #main-nav a {
     border-bottom-color: rgba(255, 255, 255, 0.05);
+  }
+
+  body.dark-theme .menu-overlay {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  /* Active state enhancements for dark theme */
+  body.dark-theme #main-nav a:active,
+  body.dark-theme #main-nav a:focus {
+    background-color: rgba(255, 255, 255, 0.05);
   }
 }
 

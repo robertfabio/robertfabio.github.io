@@ -211,78 +211,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize language selector functionality
   initializeLanguageSelector();
 
-    // Menu Toggle Functionality - guard against duplicate initialization
-  if (!window.__topbarMenuInitialized && menuToggle && mainNav) {
-    let isMenuOpen = false;
-
-    function toggleMenu() {
-      isMenuOpen = !isMenuOpen;
-
-      // Toggle classes for animation and state
-      menuToggle.classList.toggle('active');
-      mainNav.classList.toggle('active');
-      document.body.classList.toggle('menu-open');
-
-      // Update ARIA attributes
-      const isExpanded = isMenuOpen ? 'true' : 'false';
-      const ariaLabel = isMenuOpen ? 'Fechar menu' : 'Abrir menu';
-      menuToggle.setAttribute('aria-expanded', isExpanded);
-      menuToggle.setAttribute('aria-label', ariaLabel);
-      mainNav.setAttribute('aria-hidden', (!isMenuOpen).toString());
-
-      // Handle menu overlay
-      let overlay = document.querySelector('.menu-overlay');
-      if (isMenuOpen) {
-        if (!overlay) {
-          overlay = document.createElement('div');
-          overlay.className = 'menu-overlay';
-          document.body.appendChild(overlay);
-          requestAnimationFrame(() => overlay.classList.add('active'));
-        }
-      } else if (overlay) {
-        overlay.classList.remove('active');
-        setTimeout(() => overlay.remove(), 300);
-      }
-    }
-
-    // Toggle menu on button click
-    menuToggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleMenu();
-    });
-
-    // Close menu when clicking outside
-    document.addEventListener('click', (e) => {
-      if (isMenuOpen && !mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
-        toggleMenu();
-      }
-    });
-
-    // Close menu on ESC key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && isMenuOpen) {
-        toggleMenu();
-      }
-    });
-
-    // Close menu when clicking links
-    mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        if (isMenuOpen) toggleMenu();
-      });
-    });
-
-    // Handle window resize
-    let resizeTimer;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimer);
-      resizeTimer = setTimeout(() => {
-        if (window.innerWidth > 480 && isMenuOpen) {
-          toggleMenu();
-        }
-      }, 100);
-    });
-  }
+    // Menu Toggle Functionality is handled in topbar.js
 
 });
 

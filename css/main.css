@@ -78,6 +78,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  scroll-padding-top: 80px; /* Adiciona padding para scroll suave */
 }
 
 body {
@@ -87,6 +88,7 @@ body {
   color: var(--primary);
   line-height: 1.6;
   overflow-x: hidden;
+  padding-top: 60px; /* Altura da topbar */
   background-image: url('../img/bg/magicpattern-doodly-background.svg');
   background-size: cover;
   background-attachment: fixed;
@@ -118,6 +120,17 @@ a:hover {
 section,
 footer {
   padding: var(--section-padding-xs);
+  position: relative;
+}
+
+/* Ajuste para as âncoras das seções */
+section::before {
+  content: '';
+  display: block;
+  position: absolute;
+  top: -60px; /* Altura da topbar */
+  visibility: hidden;
+  pointer-events: none;
 }
 
 section header {
@@ -214,9 +227,57 @@ body.dark-theme #banner {
 }
 
 body.dark-theme {
+  /* Keep background image but use darker base color */
   background-image: url('../img/bg/magicpattern-doodly-background.svg');
   background-blend-mode: overlay;
   background-color: rgba(18, 18, 18, 0.97);
+
+  /* Override site variables so all components using var(...) switch to dark values */
+  --background: #0b0d10; /* main page background */
+  --background-alternative: #0f1113; /* alternative section background */
+  --primary: #e6eef8; /* primary text color for dark theme */
+  --primary-light: #cfe6ff; /* lighter primary for accents */
+  --text-color: #e6eef8;
+  --accent: #6ea8fe; /* keep accent or slightly adjust for contrast */
+  --accent-light: #8fbfff;
+  --accent-dark: #1e88e5;
+  --card-shadow: rgba(0,0,0,0.45);
+  --card-shadow-hover: rgba(0,0,0,0.55);
+  --card-shadow-alt: rgba(0,0,0,0.35);
+
+  color: var(--primary);
+}
+
+/* Component-level dark theme adjustments for elements that used hard-coded light colors */
+body.dark-theme .card,
+body.dark-theme .card-min,
+body.dark-theme .links .card,
+body.dark-theme .cv-link {
+  background-color: var(--background-alternative);
+  color: var(--primary);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+}
+
+body.dark-theme section,
+body.dark-theme footer {
+  background-color: var(--background);
+  color: var(--primary);
+}
+
+body.dark-theme a {
+  color: var(--accent);
+}
+
+/* Ensure topbar is consistent (some rules live in topbar.css but reinforce here) */
+body.dark-theme #topbar,
+body.dark-theme #topbar .topbar {
+  background-color: rgba(18,18,18,0.98);
+  color: var(--primary);
+}
+
+body.dark-theme .experience {
+  background: var(--background-alternative);
+  box-shadow: var(--card-shadow);
 }
 
 /* Layout e tipografia fluida */
@@ -336,6 +397,20 @@ img, .cat-gif, .project-image { max-width: 100%; height: auto; display: block; }
   .cards { grid-template-columns: repeat(2, 1fr); }
   .content-grid { grid-template-columns: 1fr; }
   #main-nav { gap:0.5rem; font-size:0.95rem; }
+  
+  /* Ajuste de scroll para mobile */
+  html {
+    scroll-padding-top: 70px; /* Valor menor para mobile */
+  }
+  
+  body {
+    padding-top: 60px; /* Mantem o padding-top consistente */
+  }
+  
+  /* Ajuste para as âncoras em mobile */
+  section::before {
+    top: -70px;
+  }
 }
 
 @media (max-width: 600px) {
