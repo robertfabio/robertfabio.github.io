@@ -21,41 +21,34 @@
 
 #experience .content-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-areas:
-    'exp-1 exp-2'
-    'exp-3 exp-4'
-    'description description';
-  align-items: stretch;
-  justify-items: stretch; /* Alterado para stretch para ocupar todo o espaço */
-  gap: var(--sp-md); /* Ajustado para espaçamento uniforme */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1rem;
   position: relative;
   z-index: 1;
+  max-width: 1200px;
+  margin: 0 auto;
 }
-
-/* #experience .cards {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-md);
-} */
 
 #experience .experience {
   cursor: pointer;
-  padding: var(--sp-xs) var(--sp-sm); /* Reduzido o padding para cards menores */
-  opacity: 0.9;
+  padding: 1.25rem;
   background-color: white;
-  border-radius: 10px; /* Reduzido o raio da borda */
-  transition: all var(--transition-normal);
-  border-bottom: 2px solid transparent; /* Reduzida a espessura da borda */
-  width: 100%;
+  border-radius: 12px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
-  box-shadow: var(--card-shadow-alt) 0px 4px 12px; /* Sombra mais sutil */
-  min-height: 80px; /* Altura mínima em vez de 100% */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid rgba(10, 15, 20, 0.03);
+  border: 1px solid rgba(131, 147, 224, 0.1);
+  transform: translateY(0);
+}
+
+#experience .experience:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  border-color: rgba(131, 147, 224, 0.2);
 }
 
 #experience .experience::before {
@@ -146,15 +139,15 @@
 
 .exp-descriptions {
   grid-area: description;
-  padding: var(--sp-lg); /* Reduzido o padding */
+  padding: 1.5rem;
   background-color: white;
   border-radius: 12px;
-  box-shadow: var(--card-shadow) 0px 10px 30px;
-  margin-top: var(--sp-md);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   width: 100%;
   border-left: 3px solid var(--accent);
   position: relative;
   overflow: hidden;
+  margin-top: 1rem;
 }
 
 .exp-descriptions::before {
@@ -164,7 +157,9 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, transparent 0%, rgba(131, 147, 224, 0.04) 100%);
+  background: linear-gradient(135deg, 
+    rgba(131, 147, 224, 0.02) 0%, 
+    rgba(131, 147, 224, 0.08) 100%);
   z-index: -1;
 }
 
@@ -268,45 +263,143 @@
 
 @media (max-width: 480px) {
   #experience {
-    padding-top: var(--sp-sm);
-    padding-bottom: var(--sp-sm);
+    padding: var(--sp-sm) 0;
   }
   
   #experience .content-grid {
-    gap: var(--sp-xs); /* Reduzido o espaçamento entre cards */
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "exp-1"
+      "exp-2"
+      "exp-3"
+      "description";
+    gap: 0.75rem;
   }
   
   #experience .experience {
-    padding: var(--sp-xs);
-    min-height: 70px; /* Reduzida a altura mínima */
+    padding: 1rem;
+    min-height: auto;
+    border-radius: 8px;
+    background: linear-gradient(to right, rgba(131, 147, 224, 0.05), transparent);
+    border: 1px solid rgba(131, 147, 224, 0.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  }
+
+  #experience .experience.active {
+    background: linear-gradient(to right, rgba(131, 147, 224, 0.1), transparent);
+    border-left: 3px solid var(--accent);
+    transform: translateX(0);
   }
   
   .experience h4 {
-    font-size: 0.9rem; /* Reduzido o tamanho da fonte */
-    margin-bottom: var(--sp-xs);
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .experience h4 i {
+    color: var(--accent);
+    font-size: 0.9rem;
   }
   
   .experience p {
-    font-size: 0.8rem; /* Reduzido o tamanho da fonte */
-    line-height: 1.3; /* Reduzida a altura da linha */
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin: 0;
   }
   
   .experience small {
-    font-size: 0.75rem; /* Reduzido o tamanho da fonte */
-    margin-top: var(--sp-xs);
+    font-size: 0.8rem;
+    margin-top: 0.5rem;
+    color: var(--accent);
   }
   
   .exp-descriptions {
-    padding: var(--sp-md);
-    margin-top: var(--sp-sm);
+    padding: 1.25rem;
+    margin-top: 0.5rem;
+    border-radius: 8px;
+    border-left: none;
+    border-top: 3px solid var(--accent);
+    background: white;
   }
   
+  .exp-description {
+    gap: 1rem;
+  }
+
   .exp-description h2 {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    padding-bottom: 0.75rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid rgba(131, 147, 224, 0.1);
+  }
+
+  .exp-description h2::after {
+    width: 30px;
+    height: 2px;
+    bottom: -1px;
+  }
+  
+  .exp-description p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .exp-description ul {
+    margin: 0;
   }
   
   .exp-description ul li {
-    font-size: 0.85rem;
-    margin-bottom: var(--sp-xs);
+    font-size: 0.9rem;
+    margin-bottom: 0.75rem;
+    padding-left: 1.5rem;
+    line-height: 1.5;
+  }
+
+  .exp-description ul li::before {
+    width: 6px;
+    height: 6px;
+    top: 8px;
+  }
+
+  /* Animação suave ao trocar de experiência */
+  .exp-description.active {
+    animation: slideUp 0.3s ease-out;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* Dark theme adjustments for mobile */
+  body.dark-theme #experience .experience {
+    background: linear-gradient(to right, rgba(131, 147, 224, 0.05), transparent);
+    border-color: rgba(255, 255, 255, 0.05);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  body.dark-theme #experience .experience.active {
+    background: linear-gradient(to right, rgba(131, 147, 224, 0.1), rgba(18, 18, 18, 0.8));
+    border-left-color: var(--accent);
+  }
+
+  body.dark-theme .exp-descriptions {
+    background-color: rgba(18, 18, 18, 0.8);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    border-top-color: var(--accent);
+  }
+
+  body.dark-theme .exp-description h2 {
+    border-bottom-color: rgba(255, 255, 255, 0.1);
   }
 }

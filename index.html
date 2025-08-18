@@ -47,15 +47,6 @@
           </div>
         </div>
 
-        <!-- Centro: Navbar -->
-        <!-- Centro: Navbar (moved out for better mobile behavior) -->
-        <nav id="main-nav" aria-label="Navegação principal">
-          <a href="#about" data-i18n="nav-about">Sobre</a>
-          <a href="#experience" data-i18n="nav-experience">Experiência</a>
-          <a href="#projects" data-i18n="nav-projects">Projetos</a>
-          <a href="#contact" data-i18n="nav-contact">Contato</a>
-        </nav>
-
         <!-- Direita: Controles -->
         <div class="controls">
             <a href="#" class="theme-toggle" id="theme-toggle" aria-label="Alternar tema">
@@ -73,6 +64,16 @@
           <span></span>
         </button>
       </div>
+
+      <!-- Menu de navegação -->
+      <nav id="main-nav" aria-label="Navegação principal">
+        <div class="nav-content">
+          <a href="#about" data-i18n="nav-about">Sobre</a>
+          <a href="#experience" data-i18n="nav-experience">Experiência</a>
+          <a href="#projects" data-i18n="nav-projects">Projetos</a>
+          <a href="#contact" data-i18n="nav-contact">Contato</a>
+        </div>
+      </nav>
     </div>
 
     <!-- Banner -->
@@ -317,16 +318,8 @@
                   <div class="light-theme-badge">
                     <div class="badge-base LI-profile-badge" data-locale="pt_BR" data-size="medium" data-theme="light" data-type="HORIZONTAL" data-vanity="fábioroberto" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bioroberto?trk=profile-badge">Fábio Roberto</a></div>
                   </div>
-
-                  <!-- Dark theme fallback badge: show only in dark mode if needed -->
-                  <div class="dark-theme-badge">
-                    <div class="badge-base LI-profile-badge" data-locale="pt_BR" data-size="medium" data-theme="dark" data-type="HORIZONTAL" data-vanity="fábioroberto" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://br.linkedin.com/in/f%C3%A1bioroberto?trk=profile-badge">Fábio Roberto</a></div>
-                  </div>
-
                 </div>
             </div>
-    
-            <img class="cat-gif" src="img/cat.gif" alt="One Cat">
             
             <div class="links animate__animated animate__fadeInUp animate__delay-1s">
                 <a
@@ -391,12 +384,13 @@
 
     <footer class="container" style="font-size: small; padding-top: 0;">
       <div class="animate__animated animate__fadeIn animate__delay-1s" style="display: flex; justify-content: center; align-items: center; gap: 5px; color: var(--primary-light);">
-        <span data-i18n="footer-designed">Designed with passion by Fábio R.D.G.F.</span> © 2025
+        <span data-i18n="footer-designed">Designed with passion by Fábio</span> © 2025
       </div>
     </footer>
 
     <!-- Scripts -->
     <script src="js/i18n.js"></script>
+    <script src="js/topbar.js"></script>
     <script src="js/app.js"></script>
     <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     

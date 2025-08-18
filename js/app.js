@@ -12,25 +12,28 @@ document.addEventListener('DOMContentLoaded', function() {
   const menuToggle = document.getElementById('menu-toggle');
   const mainNav = document.getElementById('main-nav');
 
-  // Cleanup any leftover state (in case menu was left open or user did undo)
-  (function cleanupMenuState(){
-    try {
-      if (mainNav) {
-        mainNav.classList.remove('active','show');
-        // ensure off-screen for safety
-        mainNav.style.right = '';
+  // Initialize menu state
+  (function initializeMenu() {
+    if (!mainNav || !menuToggle) return;
+    
+    // Reset any existing state
+    mainNav.classList.remove('active');
+    menuToggle.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    menuToggle.setAttribute('aria-label', 'Abrir menu');
+    mainNav.setAttribute('aria-hidden', 'true');
+    
+    // Add ARIA labels
+    mainNav.setAttribute('role', 'navigation');
+    mainNav.setAttribute('aria-label', 'Menu principal');
+    
+    // Initialize menu links
+    const links = mainNav.querySelectorAll('a');
+    links.forEach(link => {
+      if (link.getAttribute('href').startsWith('#')) {
+        link.setAttribute('role', 'menuitem');
       }
-      if (menuToggle) {
-        menuToggle.classList.remove('active');
-        menuToggle.setAttribute('aria-expanded', 'false');
-      }
-      document.body.classList.remove('menu-open');
-      document.body.style.overflow = '';
-      const existingOverlay = document.getElementById('mobile-menu-overlay');
-      if (existingOverlay && existingOverlay.parentNode) existingOverlay.parentNode.removeChild(existingOverlay);
-    } catch (err) {
-      console.error('cleanupMenuState error', err);
-    }
+    });
   })();
 
   // Add shine effect to logo
@@ -208,152 +211,79 @@ document.addEventListener('DOMContentLoaded', function() {
   // Initialize language selector functionality
   initializeLanguageSelector();
 
-  // Menu Toggle Functionality - Improved for mobile
-  if (menuToggle && mainNav) {
+    // Menu Toggle Functionality - guard against duplicate initialization
+  if (!window.__topbarMenuInitialized && menuToggle && mainNav) {
     let isMenuOpen = false;
 
-    function toggleMenu(open) {
-      isMenuOpen = open;
-      menuToggle.classList.toggle('active', open);
-  mainNav.classList.toggle('active', open);
-  // Keep compatibility with older code/CSS that expects 'show'
-  mainNav.classList.toggle('show', open);
-  // Update aria for accessibility
-  menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-      document.body.style.overflow = open ? 'hidden' : '';
-      
-      // Adiciona classe ao body para prevenir scroll
-      document.body.classList.toggle('menu-open', open);
-      
-      // Adiciona uma transição suave para o botão do menu
-      menuToggle.style.transition = 'all 0.3s ease';
-      
-        // Overlay: cria uma camada clicável que fecha o menu quando o usuário toca fora
-        try {
-          let overlay = document.getElementById('mobile-menu-overlay');
-          if (open) {
-            if (!overlay) {
-              overlay = document.createElement('div');
-              overlay.id = 'mobile-menu-overlay';
-              overlay.style.position = 'fixed';
-              overlay.style.top = '0';
-              overlay.style.left = '0';
-              overlay.style.width = '100%';
-              overlay.style.height = '100%';
-              overlay.style.background = 'rgba(0,0,0,0.35)';
-              overlay.style.opacity = '0';
-              overlay.style.transition = 'opacity 0.25s ease';
-              overlay.style.zIndex = '1150'; // abaixo do mainNav (1200)
-              overlay.addEventListener('click', function() { toggleMenu(false); });
-              document.body.appendChild(overlay);
-              // trigger fade in
-              requestAnimationFrame(() => { overlay.style.opacity = '1'; });
-            } else {
-              overlay.style.display = 'block';
-              requestAnimationFrame(() => { overlay.style.opacity = '1'; });
-            }
-          } else {
-            if (overlay) {
-              overlay.style.opacity = '0';
-              setTimeout(() => { if (overlay.parentNode) overlay.parentNode.removeChild(overlay); }, 260);
-            }
-            // Ensure classes removed in case CSS state mismatched
-            try {
-              mainNav.classList.remove('active','show');
-              menuToggle.classList.remove('active');
-              menuToggle.setAttribute('aria-expanded', 'false');
-              document.body.classList.remove('menu-open');
-              document.body.style.overflow = '';
-            } catch (err) { /* ignore */ }
-          }
-        } catch (err) {
-          // se algo falhar, não bloqueia o menu; logging mínimo
-          console.error('Menu overlay error', err);
+    function toggleMenu() {
+      isMenuOpen = !isMenuOpen;
+
+      // Toggle classes for animation and state
+      menuToggle.classList.toggle('active');
+      mainNav.classList.toggle('active');
+      document.body.classList.toggle('menu-open');
+
+      // Update ARIA attributes
+      const isExpanded = isMenuOpen ? 'true' : 'false';
+      const ariaLabel = isMenuOpen ? 'Fechar menu' : 'Abrir menu';
+      menuToggle.setAttribute('aria-expanded', isExpanded);
+      menuToggle.setAttribute('aria-label', ariaLabel);
+      mainNav.setAttribute('aria-hidden', (!isMenuOpen).toString());
+
+      // Handle menu overlay
+      let overlay = document.querySelector('.menu-overlay');
+      if (isMenuOpen) {
+        if (!overlay) {
+          overlay = document.createElement('div');
+          overlay.className = 'menu-overlay';
+          document.body.appendChild(overlay);
+          requestAnimationFrame(() => overlay.classList.add('active'));
         }
+      } else if (overlay) {
+        overlay.classList.remove('active');
+        setTimeout(() => overlay.remove(), 300);
+      }
     }
 
-    menuToggle.addEventListener('click', function(event) {
-      event.stopPropagation(); // Previne que o evento se propague
-      toggleMenu(!isMenuOpen);
+    // Toggle menu on button click
+    menuToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
     });
 
-    // Fecha o menu quando clicar em qualquer lugar fora dele
-    document.addEventListener('click', function(event) {
-      if (isMenuOpen && !menuToggle.contains(event.target) && !mainNav.contains(event.target)) {
-        toggleMenu(false);
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (isMenuOpen && !mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+        toggleMenu();
       }
     });
 
-    // Fecha o menu quando clicar em um link
+    // Close menu on ESC key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isMenuOpen) {
+        toggleMenu();
+      }
+    });
+
+    // Close menu when clicking links
     mainNav.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', function(e) {
-        if (this.getAttribute('href').startsWith('#')) {
-          e.preventDefault();
-          const targetId = this.getAttribute('href');
-          const targetElement = document.querySelector(targetId);
-          
-          toggleMenu(false);
-          
-          if (targetElement) {
-            setTimeout(() => {
-              targetElement.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-              });
-              // Atualiza a URL sem recarregar a página
-              history.pushState(null, '', targetId);
-            }, 300);
-          }
-        } else {
-          toggleMenu(false);
-        }
+      link.addEventListener('click', () => {
+        if (isMenuOpen) toggleMenu();
       });
     });
 
-    // Fecha o menu quando pressionar ESC
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape' && isMenuOpen) {
-        toggleMenu(false);
-      }
+    // Handle window resize
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        if (window.innerWidth > 480 && isMenuOpen) {
+          toggleMenu();
+        }
+      }, 100);
     });
-
-    // Previne que o menu feche quando clicar dentro dele
-    mainNav.addEventListener('click', function(event) {
-      event.stopPropagation();
-    });
-    
-    // Ajusta o menu quando a orientação do dispositivo muda
-    window.addEventListener('resize', function() {
-      if (window.innerWidth > 480 && isMenuOpen) {
-        toggleMenu(false);
-      }
-    });
-    
-    // Adiciona efeito de toque para dispositivos móveis
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    document.addEventListener('touchstart', function(event) {
-      touchStartX = event.changedTouches[0].screenX;
-    }, false);
-    
-    document.addEventListener('touchend', function(event) {
-      touchEndX = event.changedTouches[0].screenX;
-      handleSwipe();
-    }, false);
-    
-    function handleSwipe() {
-      if (touchEndX < touchStartX - 75 && !isMenuOpen) {
-        // Swipe da direita para a esquerda - abre o menu
-        toggleMenu(true);
-      }
-      
-      if (touchEndX > touchStartX + 75 && isMenuOpen) {
-        // Swipe da esquerda para a direita - fecha o menu
-        toggleMenu(false);
-      }
-    }
   }
+
 });
 
 /**
